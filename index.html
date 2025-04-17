@@ -31,21 +31,49 @@
             .section-title {
                 @apply text-3xl font-bold text-apple-black mb-4 mt-8;
             }
+            .game-screenshot {
+                @apply rounded-lg shadow-md transition-transform duration-300 hover:scale-105;
+            }
+            .update-card {
+                @apply bg-white rounded-lg shadow-lg p-6 border-l-4 border-apple-blue;
+            }
+            .language-selector {
+                @apply text-sm flex items-center space-x-2 text-apple-darkgray;
+            }
+            .language-option {
+                @apply px-2 py-1 rounded-md hover:bg-gray-100 cursor-pointer transition;
+            }
+            .language-option.active {
+                @apply bg-apple-blue text-white hover:bg-blue-700;
+            }
         }
     </style>
 </head>
 <body class="bg-apple-gray text-apple-black min-h-screen">
+    <div class="bg-white border-b border-gray-200">
+        <div class="container mx-auto px-4 py-2 flex justify-end">
+            <div class="language-selector">
+                <span>Language:</span>
+                <span class="language-option active" data-lang="en">English</span>
+                <span class="language-option" data-lang="zh">中文</span>
+            </div>
+        </div>
+    </div>
+
     <header class="bg-white shadow-md">
         <div class="container mx-auto px-4 py-6 flex justify-between items-center">
             <div class="flex items-center space-x-4">
                 <img src="https://placehold.co/60x60" alt="Monster Survivors Logo" class="h-10 w-10">
-                <span class="text-2xl font-bold">Monster Survivors</span>
+                <span class="text-2xl font-bold" data-translate="title">Monster Survivors</span>
             </div>
             <nav class="hidden md:flex space-x-6">
-                <a href="#game" class="hover:text-apple-blue transition">Play Game</a>
-                <a href="#about" class="hover:text-apple-blue transition">About</a>
-                <a href="#features" class="hover:text-apple-blue transition">Features</a>
-                <a href="#tips" class="hover:text-apple-blue transition">Tips & Tricks</a>
+                <a href="#game" class="hover:text-apple-blue transition" data-translate="nav_play">Play Game</a>
+                <a href="#about" class="hover:text-apple-blue transition" data-translate="nav_about">About</a>
+                <a href="#screenshots" class="hover:text-apple-blue transition" data-translate="nav_screenshots">Screenshots</a>
+                <a href="#features" class="hover:text-apple-blue transition" data-translate="nav_features">Features</a>
+                <a href="#gameplay" class="hover:text-apple-blue transition" data-translate="nav_gameplay">Gameplay Guide</a>
+                <a href="#tips" class="hover:text-apple-blue transition" data-translate="nav_tips">Tips & Tricks</a>
+                <a href="#updates" class="hover:text-apple-blue transition" data-translate="nav_updates">Updates</a>
             </nav>
             <button class="md:hidden focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -57,13 +85,13 @@
 
     <main class="container mx-auto px-4 py-8">
         <section class="text-center py-10">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4">Monster Survivors</h1>
-            <p class="text-xl md:text-2xl text-apple-darkgray mb-8">Survive endless waves of monsters in this thrilling action-packed game!</p>
-            <a href="#game" class="btn-primary">Play Now</a>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4" data-translate="hero_title">Monster Survivors</h1>
+            <p class="text-xl md:text-2xl text-apple-darkgray mb-8" data-translate="hero_subtitle">Survive endless waves of monsters in this thrilling action-packed game!</p>
+            <a href="#game" class="btn-primary" data-translate="hero_cta">Play Now</a>
         </section>
 
         <section id="game" class="my-12">
-            <h2 class="section-title">Play Monster Survivors</h2>
+            <h2 class="section-title" data-translate="game_section_title">Play Monster Survivors</h2>
             <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 overflow-hidden">
                 <div class="relative pb-[56.25%] h-0">
                     <iframe src="https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html" 
@@ -75,16 +103,47 @@
         </section>
 
         <section id="about" class="my-12">
-            <h2 class="section-title">About Monster Survivors</h2>
+            <h2 class="section-title" data-translate="about_section_title">About Monster Survivors</h2>
             <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
-                <p class="mb-4">Monster Survivors is an exhilarating online survival game where you face endless waves of monstrous creatures. Your objective is simple yet challenging: survive as long as possible while defeating hordes of enemies.</p>
-                <p class="mb-4">As you progress through the game, you'll unlock powerful abilities, weapons, and upgrades that will help you face increasingly difficult enemies. Strategic decision-making and quick reflexes are essential for survival.</p>
-                <p>The game features vibrant graphics, intuitive controls, and an addictive gameplay loop that keeps players coming back for more. Challenge yourself to beat your high score or compete with friends to see who can survive the longest!</p>
+                <p class="mb-4" data-translate="about_p1">Monster Survivors is an exhilarating online survival game where you face endless waves of monstrous creatures. Your objective is simple yet challenging: survive as long as possible while defeating hordes of enemies.</p>
+                <p class="mb-4" data-translate="about_p2">As you progress through the game, you'll unlock powerful abilities, weapons, and upgrades that will help you face increasingly difficult enemies. Strategic decision-making and quick reflexes are essential for survival.</p>
+                <p data-translate="about_p3">The game features vibrant graphics, intuitive controls, and an addictive gameplay loop that keeps players coming back for more. Challenge yourself to beat your high score or compete with friends to see who can survive the longest!</p>
+            </div>
+        </section>
+
+        <!-- New Screenshots Section -->
+        <section id="screenshots" class="my-12">
+            <h2 class="section-title" data-translate="screenshots_section_title">Game Screenshots</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div>
+                    <img src="https://placehold.co/600x400/png?text=Monster+Battle" alt="Monster Battle Scene" class="game-screenshot w-full">
+                    <p class="mt-2 text-center text-sm text-apple-darkgray">Epic battle against monster hordes</p>
+                </div>
+                <div>
+                    <img src="https://placehold.co/600x400/png?text=Character+Upgrades" alt="Character Upgrades Screen" class="game-screenshot w-full">
+                    <p class="mt-2 text-center text-sm text-apple-darkgray">Powerful character upgrade system</p>
+                </div>
+                <div>
+                    <img src="https://placehold.co/600x400/png?text=Boss+Fight" alt="Boss Fight" class="game-screenshot w-full">
+                    <p class="mt-2 text-center text-sm text-apple-darkgray">Challenging boss encounters</p>
+                </div>
+                <div>
+                    <img src="https://placehold.co/600x400/png?text=Weapons" alt="Weapon Selection" class="game-screenshot w-full">
+                    <p class="mt-2 text-center text-sm text-apple-darkgray">Various weapons to choose from</p>
+                </div>
+                <div>
+                    <img src="https://placehold.co/600x400/png?text=Power+Ups" alt="Power Up Collection" class="game-screenshot w-full">
+                    <p class="mt-2 text-center text-sm text-apple-darkgray">Collect power-ups to enhance your abilities</p>
+                </div>
+                <div>
+                    <img src="https://placehold.co/600x400/png?text=Map+Exploration" alt="Map Exploration" class="game-screenshot w-full">
+                    <p class="mt-2 text-center text-sm text-apple-darkgray">Explore diverse environments</p>
+                </div>
             </div>
         </section>
 
         <section id="features" class="my-12">
-            <h2 class="section-title">Game Features</h2>
+            <h2 class="section-title" data-translate="features_section_title">Game Features</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-white rounded-lg shadow-lg p-6">
                     <h3 class="text-xl font-bold mb-2">Endless Gameplay</h3>
@@ -102,11 +161,65 @@
                     <h3 class="text-xl font-bold mb-2">Powerups & Items</h3>
                     <p>Collect special items and powerups throughout your run to gain temporary advantages against the monster hordes.</p>
                 </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2">Multiple Characters</h3>
+                    <p>Choose from several unique characters, each with their own starting weapons and special abilities.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2">Achievement System</h3>
+                    <p>Complete challenges to unlock achievements and earn special rewards to showcase your gaming prowess.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Gameplay Guide Section -->
+        <section id="gameplay" class="my-12">
+            <h2 class="section-title" data-translate="gameplay_section_title">Gameplay Guide</h2>
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold mb-3">Getting Started</h3>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li><span class="font-semibold">Choose your character:</span> Each character has unique starting weapons and abilities that cater to different playstyles.</li>
+                        <li><span class="font-semibold">Movement controls:</span> Use WASD or arrow keys to move your character. Staying mobile is key to survival.</li>
+                        <li><span class="font-semibold">Automatic attacks:</span> Your character attacks automatically when enemies are in range. Focus on positioning rather than attacking.</li>
+                    </ol>
+                </div>
+                
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold mb-3">Leveling System</h3>
+                    <p class="mb-3">As you defeat monsters, you'll gain experience points (XP) represented by glowing orbs. Collect these to level up:</p>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li><span class="font-semibold">Level up choices:</span> Each level grants you a choice between three random upgrades.</li>
+                        <li><span class="font-semibold">Weapon upgrades:</span> Improve damage, area, speed, or special effects of your weapons.</li>
+                        <li><span class="font-semibold">New weapons:</span> Add additional weapons to your arsenal (up to 6 active weapons).</li>
+                        <li><span class="font-semibold">Passive items:</span> Gain buffs that enhance your character's base stats permanently.</li>
+                    </ol>
+                </div>
+                
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold mb-3">Enemy Types</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><span class="font-semibold">Standard Monsters:</span> Basic enemies that appear in large groups.</li>
+                        <li><span class="font-semibold">Elite Monsters:</span> Stronger variants with special abilities and increased health.</li>
+                        <li><span class="font-semibold">Mini-Bosses:</span> Appear at 5-minute intervals with unique attack patterns.</li>
+                        <li><span class="font-semibold">Final Boss:</span> Extremely challenging enemy that appears at the 30-minute mark.</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-3">Special Items & Pickups</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><span class="font-semibold">Health Pickups:</span> Restore a portion of your health.</li>
+                        <li><span class="font-semibold">Magnets:</span> Attract experience orbs from a greater distance.</li>
+                        <li><span class="font-semibold">Treasure Chests:</span> Contain gold that can be spent on permanent upgrades between runs.</li>
+                        <li><span class="font-semibold">Power Shrines:</span> Activate these to trigger special effects that last for 30 seconds.</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
         <section id="tips" class="my-12">
-            <h2 class="section-title">Tips & Tricks</h2>
+            <h2 class="section-title" data-translate="tips_section_title">Tips & Tricks</h2>
             <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
                 <ul class="list-disc pl-5 space-y-2">
                     <li>Focus on movement speed early to avoid getting surrounded by monsters</li>
@@ -115,7 +228,67 @@
                     <li>Don't be greedy for experience orbs if it means putting yourself in danger</li>
                     <li>Learn each enemy's attack pattern to more effectively avoid damage</li>
                     <li>Use terrain and obstacles to funnel monsters and create chokepoints</li>
+                    <li>The "Cooldown Reduction" passive item can dramatically increase your damage output</li>
+                    <li>For beginners, the "Shield" character is recommended for higher survivability</li>
+                    <li>When facing Elite monsters, focus on eliminating them first before standard enemies</li>
+                    <li>Save health pickups for when you're below 50% health to maximize their value</li>
                 </ul>
+            </div>
+        </section>
+
+        <!-- New Updates Section -->
+        <section id="updates" class="my-12">
+            <h2 class="section-title" data-translate="updates_section_title">Game Updates & News</h2>
+            
+            <div class="space-y-6">
+                <div class="update-card">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">Version 2.5 - New Character Release</h3>
+                        <span class="text-sm text-apple-darkgray">March 15, 2023</span>
+                    </div>
+                    <p class="mb-3">We're excited to introduce "The Necromancer" - our newest character with the unique ability to summon fallen enemies to fight by your side!</p>
+                    <ul class="list-disc pl-5 space-y-1 mb-3">
+                        <li>New character: The Necromancer</li>
+                        <li>New weapon: Soul Harvester</li>
+                        <li>4 new passive items focused on summoning mechanics</li>
+                        <li>New map: The Forbidden Cemetery</li>
+                    </ul>
+                    <a href="#" class="text-apple-blue hover:underline">Read more</a>
+                </div>
+                
+                <div class="update-card">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">Version 2.4 - Balance Update</h3>
+                        <span class="text-sm text-apple-darkgray">February 1, 2023</span>
+                    </div>
+                    <p class="mb-3">This update focuses on rebalancing weapons and enemy spawns to create a more dynamic gameplay experience.</p>
+                    <ul class="list-disc pl-5 space-y-1 mb-3">
+                        <li>Buffed underused weapons like the Boomerang and Lightning Staff</li>
+                        <li>Adjusted elite monster spawn rates</li>
+                        <li>Fixed several bugs reported by the community</li>
+                        <li>Improved performance on mobile devices</li>
+                    </ul>
+                    <a href="#" class="text-apple-blue hover:underline">Read more</a>
+                </div>
+                
+                <div class="update-card">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">Upcoming Tournament - Monster Master Challenge</h3>
+                        <span class="text-sm text-apple-darkgray">April 1-10, 2023</span>
+                    </div>
+                    <p class="mb-3">Join our first official tournament! Compete against players worldwide for a chance to win exclusive in-game rewards and real prizes.</p>
+                    <ul class="list-disc pl-5 space-y-1 mb-3">
+                        <li>Registration opens March 20, 2023</li>
+                        <li>Special tournament mode with standardized characters</li>
+                        <li>Leaderboards updated in real-time</li>
+                        <li>Grand prize: Exclusive "Champion" character skin and gaming peripherals</li>
+                    </ul>
+                    <a href="#" class="text-apple-blue hover:underline">Learn more & register</a>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <a href="#" class="btn-primary">View All Updates</a>
             </div>
         </section>
     </main>
@@ -127,9 +300,9 @@
                     <p>&copy; 2023 Monster Survivors. All rights reserved.</p>
                 </div>
                 <div class="flex space-x-4">
-                    <a href="#" class="hover:text-apple-blue transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-apple-blue transition">Terms of Service</a>
-                    <a href="#" class="hover:text-apple-blue transition">Contact</a>
+                    <a href="#" class="hover:text-apple-blue transition" data-translate="footer_privacy">Privacy Policy</a>
+                    <a href="#" class="hover:text-apple-blue transition" data-translate="footer_terms">Terms of Service</a>
+                    <a href="#" class="hover:text-apple-blue transition" data-translate="footer_contact">Contact</a>
                 </div>
             </div>
         </div>
@@ -150,6 +323,117 @@
             nav.classList.toggle('shadow-lg');
             nav.classList.toggle('rounded-lg');
             nav.classList.toggle('z-50');
+        });
+
+        // Language translations
+        const translations = {
+            en: {
+                // Navigation
+                title: "Monster Survivors",
+                nav_play: "Play Game",
+                nav_about: "About",
+                nav_screenshots: "Screenshots",
+                nav_features: "Features",
+                nav_gameplay: "Gameplay Guide",
+                nav_tips: "Tips & Tricks",
+                nav_updates: "Updates",
+                // Hero Section
+                hero_title: "Monster Survivors",
+                hero_subtitle: "Survive endless waves of monsters in this thrilling action-packed game!",
+                hero_cta: "Play Now",
+                // Section Titles
+                game_section_title: "Play Monster Survivors",
+                about_section_title: "About Monster Survivors",
+                screenshots_section_title: "Game Screenshots",
+                features_section_title: "Game Features",
+                gameplay_section_title: "Gameplay Guide",
+                tips_section_title: "Tips & Tricks",
+                updates_section_title: "Game Updates & News",
+                // About Section
+                about_p1: "Monster Survivors is an exhilarating online survival game where you face endless waves of monstrous creatures. Your objective is simple yet challenging: survive as long as possible while defeating hordes of enemies.",
+                about_p2: "As you progress through the game, you'll unlock powerful abilities, weapons, and upgrades that will help you face increasingly difficult enemies. Strategic decision-making and quick reflexes are essential for survival.",
+                about_p3: "The game features vibrant graphics, intuitive controls, and an addictive gameplay loop that keeps players coming back for more. Challenge yourself to beat your high score or compete with friends to see who can survive the longest!",
+                // Footer
+                footer_privacy: "Privacy Policy",
+                footer_terms: "Terms of Service",
+                footer_contact: "Contact"
+            },
+            zh: {
+                // Navigation
+                title: "怪物生存者",
+                nav_play: "开始游戏",
+                nav_about: "游戏介绍",
+                nav_screenshots: "游戏截图",
+                nav_features: "游戏特色",
+                nav_gameplay: "游戏指南",
+                nav_tips: "技巧攻略",
+                nav_updates: "更新动态",
+                // Hero Section
+                hero_title: "怪物生存者",
+                hero_subtitle: "在这款刺激的动作游戏中生存，对抗无尽的怪物浪潮！",
+                hero_cta: "立即开始",
+                // Section Titles
+                game_section_title: "体验怪物生存者",
+                about_section_title: "关于怪物生存者",
+                screenshots_section_title: "游戏截图",
+                features_section_title: "游戏特色",
+                gameplay_section_title: "游戏指南",
+                tips_section_title: "技巧攻略",
+                updates_section_title: "游戏更新与新闻",
+                // About Section
+                about_p1: "怪物生存者是一款令人兴奋的在线生存游戏，您将面对无尽的怪物浪潮。游戏目标简单却具有挑战性：尽可能长时间生存，同时击败成群的敌人。",
+                about_p2: "随着游戏的进行，您将解锁强大的能力、武器和升级，帮助您应对越来越困难的敌人。战略决策和快速反应对生存至关重要。",
+                about_p3: "游戏具有生动的图形、直观的控制和令人上瘾的游戏循环，让玩家不断回来体验更多。挑战自己打破最高分数，或与朋友竞争看谁能生存最久！",
+                // Footer
+                footer_privacy: "隐私政策",
+                footer_terms: "服务条款",
+                footer_contact: "联系我们"
+            }
+        };
+
+        // Language switcher
+        const languageOptions = document.querySelectorAll('.language-option');
+        
+        languageOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                setLanguage(lang);
+                
+                // Update active state
+                languageOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        function setLanguage(lang) {
+            const elements = document.querySelectorAll('[data-translate]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Store language preference
+            localStorage.setItem('preferred_language', lang);
+        }
+
+        // Check for saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferred_language');
+            if (savedLang) {
+                setLanguage(savedLang);
+                
+                // Update active state
+                languageOptions.forEach(opt => {
+                    if (opt.getAttribute('data-lang') === savedLang) {
+                        opt.classList.add('active');
+                    } else {
+                        opt.classList.remove('active');
+                    }
+                });
+            }
         });
     </script>
 </body>
