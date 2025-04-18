@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏攻略 - Monster Survivors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0f0f1a;
+            color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+        }
+        .bg-game-dark {
+            background-color: #1a1a2e;
+        }
+        .bg-game-primary {
+            background-color: #7928ca;
+        }
+        .bg-game-secondary {
+            background-color: #22c55e;
+        }
+        .bg-game-accent {
+            background-color: #ff5722;
+        }
+        .text-game-primary {
+            color: #7928ca;
+        }
+        .border-game-primary {
+            border-color: #7928ca;
+        }
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(121, 40, 202, 0.3);
+        }
+        .header-gradient {
+            background: linear-gradient(90deg, #7928ca, #ff0080);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="bg-game-dark shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-4">
+                    <div>
+                        <a href="index.html" class="flex items-center py-5 px-2">
+                            <i class="fas fa-gamepad text-purple-500 text-xl mr-2"></i>
+                            <span class="font-bold text-white text-xl">Monster Survivors</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-1">
+                    <a href="index.html" class="py-5 px-3 text-gray-300 hover:text-white">首页</a>
+                    <a href="guides.html" class="py-5 px-3 text-white border-b-2 border-purple-500">攻略</a>
+                    <a href="updates.html" class="py-5 px-3 text-gray-300 hover:text-white">更新</a>
+                    <a href="faq.html" class="py-5 px-3 text-gray-300 hover:text-white">常见问题</a>
+                    <a href="about.html" class="py-5 px-3 text-gray-300 hover:text-white">关于我们</a>
+                    <a href="contact.html" class="py-5 px-3 text-gray-300 hover:text-white">联系</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <div class="header-gradient py-6">
+        <div class="max-w-6xl mx-auto px-4">
+            <h1 class="text-4xl font-bold text-white text-center">游戏攻略与技巧</h1>
+            <p class="text-xl text-center text-white mt-2">掌握这些策略，成为Monster Survivors的大师！</p>
+        </div>
+    </div>
+
+    <!-- 主要内容区 -->
+    <div class="max-w-6xl mx-auto px-4 py-10">
+        <!-- 快速导航 -->
+        <div class="bg-game-dark p-6 rounded-lg shadow-lg mb-10">
+            <h2 class="text-2xl font-bold mb-4">攻略导航</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <a href="#basics" class="px-4 py-2 bg-purple-900 hover:bg-purple-800 rounded-lg text-center transition">新手入门</a>
+                <a href="#characters" class="px-4 py-2 bg-purple-900 hover:bg-purple-800 rounded-lg text-center transition">角色选择</a>
+                <a href="#weapons" class="px-4 py-2 bg-purple-900 hover:bg-purple-800 rounded-lg text-center transition">武器搭配</a>
+                <a href="#enemies" class="px-4 py-2 bg-purple-900 hover:bg-purple-800 rounded-lg text-center transition">敌人图鉴</a>
+                <a href="#levels" class="px-4 py-2 bg-purple-900 hover:bg-purple-800 rounded-lg text-center transition">关卡攻略</a>
+                <a href="#boss" class="px-4 py-2 bg-purple-900 hover:bg-purple-800 rounded-lg text-center transition">Boss战技巧</a>
+            </div>
+        </div>
+
+        <!-- 新手入门 -->
+        <section id="basics" class="mb-16">
+            <div class="border-l-4 border-game-primary pl-4 mb-6">
+                <h2 class="text-3xl font-bold">新手入门指南</h2>
+                <p class="text-gray-400">掌握游戏基础，为成功生存打下基础</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-game-dark p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-3 flex items-center">
+                        <i class="fas fa-star text-yellow-400 mr-2"></i>基本操作
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>移动：使用键盘上的WASD或方向键控制角色移动</li>
+                        <li>闪避：按下空格键可以快速闪避敌人攻击</li>
+                        <li>自动攻击：角色会自动向最近的敌人发起攻击</li>
+                        <li>拾取物品：走过道具即可自动拾取</li>
+                        <li>升级选择：每升一级可以选择一项增强</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-game-dark p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-3 flex items-center">
+                        <i class="fas fa-heart text-red-500 mr-2"></i>生存技巧
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>保持移动，避免被敌群包围</li>
+                        <li>优先攻击危险性高的敌人</li>
+                        <li>收集经验宝石加速升级</li>
+                        <li>注意地图上的陷阱和障碍物</li>
+                        <li>在Boss出现前确保已有足够强力的武器</li>
+                    </ul>
+                </div>
+                
+                <div class="col-span-1 md:col-span-2 bg-purple-900 bg-opacity-30 p-6 rounded-lg border border-purple-500">
+                    <h3 class="text-xl font-bold mb-3">新手常见错误</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-bold text-red-400">❌ 站着不动</p>
+                            <p class="text-gray-300">在游戏中停止移动是最危险的行为，会导致敌人快速包围</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-red-400">❌ 收集过多相同武器</p>
+                            <p class="text-gray-300">武器多样性比单一武器高等级更重要</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-red-400">❌ 忽视被动道具</p>
+                            <p class="text-gray-300">被动增益道具对后期生存至关重要</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-red-400">❌ 不关注小地图</p>
+                            <p class="text-gray-300">小地图可以提前预警敌人靠近和珍稀物品位置</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 p-4 bg-green-900 bg-opacity-20 border border-green-700 rounded-lg">
+                <h3 class="text-xl font-bold flex items-center mb-2">
+                    <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>新手小贴士
+                </h3>
+                <p>前20分钟专注于提升攻击力和攻击范围，之后再考虑防御和恢复能力。这样可以有效应对中期敌人数量激增的情况。</p>
+            </div>
+        </section>
+
+        <!-- 角色选择 -->
+        <section id="characters" class="mb-16">
+            <div class="border-l-4 border-game-primary pl-4 mb-6">
+                <h2 class="text-3xl font-bold">角色选择指南</h2>
+                <p class="text-gray-400">了解不同角色特点，选择适合自己的战斗风格</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-game-dark p-6 rounded-lg shadow-lg transition duration-300 strategy-card">
+                    <div class="w-20 h-20 rounded-full bg-purple-700 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-ninja text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">暗影刺客</h3>
+                    <div class="flex justify-center space-x-1 mb-3">
+                        <span class="px-2 py-1 bg-green-900 text-xs rounded-full">高攻速</span>
+                        <span class="px-2 py-1 bg-red-900 text-xs rounded-full">低生命</span>
+                        <span class="px-2 py-1 bg-blue-900 text-xs rounded-full">高移速</span>
+                    </div>
+                    <p class="text-gray-300 text-sm text-center mb-4">刺客以极高的攻击速度和移动速度见长，但生命值较低，适合喜欢高风险高回报玩法的玩家。</p>
+                    <div class="mt-auto">
+                        <h4 class="font-bold text-sm mb-1">推荐武器:</h4>
+                        <div class="flex justify-center space-x-2">
+                            <span class="px-2 py-1 bg-purple-900 text-xs rounded-full">飞刀</span>
+                            <span class="px-2 py-1 bg-purple-900 text-xs rounded-full">毒镖</span>
+                            <span class="px-2 py-1 bg-purple-900 text-xs rounded-full">短剑</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-game-dark p-6 rounded-lg shadow-lg transition duration-300 strategy-card">
+                    <div class="w-20 h-20 rounded-full bg-blue-700 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-hat-wizard text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">元素法师</h3>
+                    <div class="flex justify-center space-x-1 mb-3">
+                        <span class="px-2 py-1 bg-green-900 text-xs rounded-full">高范围</span>
+                        <span class="px-2 py-1 bg-red-900 text-xs rounded-full">低防御</span>
+                        <span class="px-2 py-1 bg-blue-900 text-xs rounded-full">高法力</span>
+                    </div>
+                    <p class="text-gray-300 text-sm text-center mb-4">法师拥有强大的范围攻击能力，可以同时对多个敌人造成伤害，但防御力低下，需要保持距离。</p>
+                    <div class="mt-auto">
+                        <h4 class="font-bold text-sm mb-1">推荐武器:</h4>
+                        <div class="flex justify-center space-x-2">
+                            <span class="px-2 py-1 bg-purple-900 text-xs rounded-full">魔法书</span>
+                            <span class="px-2 py-1 bg-purple-900 text-xs rounded-full">法杖</span>
+                            <span class="px-2 py-1 bg-purple-900 text-xs rounded-full">火球</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-game-dark p-6 rounded-lg shadow-lg transition duration-300 strategy-card">
+                    <div class="w-20 h-20 rounded-full bg-red-700 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">战士</h3>
+                    <div class="flex justify-center space-x-1 mb-3">
+                        <span class="px-2 py-1 bg-green-900 text-xs rounded-full">高生命</span>
+                        <span class="px-2 py-1 bg-red-900 text-xs rounded-full">低攻速</span>
+                        <span class="px-2 py-1 bg-blue-900 text-xs rounded-full">高防御</span>
+                    </div>
+                    <p class="text-gray-300 text-sm text-center mb-4">战士拥有最高的生命值和防御力，是新手友好型角色，但攻击速度较慢，前期发展较为缓慢。</p>
+                    <div class="mt-auto">
+                        <h4 class="font-bold text-sm mb-1">推荐武器:</h4>
+                        <div class="flex justify-center space-x-2">
+                            <span class="px-2 py-1 bg-purple-900 text-xs rounded-full">大剑</span>
+                            <span class="px-2 py-1 bg-purple-900 text-xs rounded-full">斧头</span>
+                            <span class="px-2 py-1 bg-purple-900 text-xs rounded-full">锤子</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-game-dark p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-4">角色解锁条件</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-transparent">
+                        <thead>
+                            <tr class="border-b border-purple-800">
+                                <th class="py-2 px-4 text-left">角色</th>
+                                <th class="py-2 px-4 text-left">解锁条件</th>
+                                <th class="py-2 px-4 text-left">特殊能力</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-purple-800 border-opacity-30">
+                                <td class="py-3 px-4">战士</td>
+                                <td class="py-3 px-4">初始解锁</td>
+                                <td class="py-3 px-4">每30秒恢复5%最大生命值</td>
+                            </tr>
+                            <tr class="border-b border-purple-800 border-opacity-30">
+                                <td class="py-3 px-4">暗影刺客</td>
+                                <td class="py-3 px-4">使用战士存活15分钟</td>
+                                <td class="py-3 px-4">10%几率闪避敌人攻击</td>
+                            </tr>
+                            <tr class="border-b border-purple-800 border-opacity-30">
+                                <td class="py-3 px-4">元素法师</td>
+                                <td class="py-3 px-4">达到10级并击败首个Boss</td>
+                                <td class="py-3 px-4">武器额外增加10%范围</td>
+                            </tr>
+                            <tr class="border-b border-purple-800 border-opacity-30">
+                                <td class="py-3 px-4">死亡骑士</td>
+                                <td class="py-3 px-4">在一局游戏中击败100个敌人</td>
+                                <td class="py-3 px-4">击杀敌人回复1%生命值</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4">狂战士</td>
+                                <td class="py-3 px-4">连续5次游戏达到20级</td>
+                                <td class="py-3 px-4">生命值低于20%时伤害提升30%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 更多部分省略 -->
+        <section id="weapons" class="mb-16">
+            <div class="border-l-4 border-game-primary pl-4 mb-6">
+                <h2 class="text-3xl font-bold">武器搭配指南</h2>
+                <p class="text-gray-400">了解不同武器的特点及最佳组合</p>
+            </div>
+            <!-- 武器内容省略 -->
+            <p class="text-center text-gray-400 italic">更多武器搭配内容正在更新中...</p>
+        </section>
+
+        <section id="enemies" class="mb-16">
+            <div class="border-l-4 border-game-primary pl-4 mb-6">
+                <h2 class="text-3xl font-bold">敌人图鉴</h2>
+                <p class="text-gray-400">了解各类敌人的弱点和应对策略</p>
+            </div>
+            <!-- 敌人内容省略 -->
+            <p class="text-center text-gray-400 italic">敌人图鉴内容正在整理中...</p>
+        </section>
+
+        <section id="levels" class="mb-16">
+            <div class="border-l-4 border-game-primary pl-4 mb-6">
+                <h2 class="text-3xl font-bold">关卡攻略</h2>
+                <p class="text-gray-400">不同地图的详细攻略和走位技巧</p>
+            </div>
+            <!-- 关卡内容省略 -->
+            <p class="text-center text-gray-400 italic">关卡攻略内容即将上线...</p>
+        </section>
+
+        <section id="boss" class="mb-16">
+            <div class="border-l-4 border-game-primary pl-4 mb-6">
+                <h2 class="text-3xl font-bold">Boss战技巧</h2>
+                <p class="text-gray-400">各种Boss的详细攻略和弱点分析</p>
+            </div>
+            <!-- Boss内容省略 -->
+            <p class="text-center text-gray-400 italic">Boss战技巧内容正在编写中...</p>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-game-dark py-10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold text-white flex items-center">
+                        <i class="fas fa-gamepad text-purple-500 mr-2"></i>
+                        Monster Survivors
+                    </h3>
+                    <p class="text-gray-400 mt-2">生存、升级、征服！</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="index.html" class="text-gray-400 hover:text-white">首页</a>
+                    <a href="guides.html" class="text-gray-400 hover:text-white">攻略</a>
+                    <a href="updates.html" class="text-gray-400 hover:text-white">更新</a>
+                    <a href="faq.html" class="text-gray-400 hover:text-white">常见问题</a>
+                    <a href="about.html" class="text-gray-400 hover:text-white">关于我们</a>
+                    <a href="contact.html" class="text-gray-400 hover:text-white">联系</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500">
+                <p>&copy; 2023 Monster Survivors. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

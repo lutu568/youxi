@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - Monster Survivors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0f0f1a;
+            color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+        }
+        .bg-game-dark {
+            background-color: #1a1a2e;
+        }
+        .bg-game-primary {
+            background-color: #7928ca;
+        }
+        .bg-game-secondary {
+            background-color: #22c55e;
+        }
+        .bg-game-accent {
+            background-color: #ff5722;
+        }
+        .header-gradient {
+            background: linear-gradient(90deg, #7928ca, #ff0080);
+        }
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+        .social-icon {
+            transition: transform 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="bg-game-dark shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-4">
+                    <div>
+                        <a href="index.html" class="flex items-center py-5 px-2">
+                            <i class="fas fa-gamepad text-purple-500 text-xl mr-2"></i>
+                            <span class="font-bold text-white text-xl">Monster Survivors</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-1">
+                    <a href="index.html" class="py-5 px-3 text-gray-300 hover:text-white">首页</a>
+                    <a href="guides.html" class="py-5 px-3 text-gray-300 hover:text-white">攻略</a>
+                    <a href="updates.html" class="py-5 px-3 text-gray-300 hover:text-white">更新</a>
+                    <a href="faq.html" class="py-5 px-3 text-gray-300 hover:text-white">常见问题</a>
+                    <a href="about.html" class="py-5 px-3 text-white border-b-2 border-purple-500">关于我们</a>
+                    <a href="contact.html" class="py-5 px-3 text-gray-300 hover:text-white">联系</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <div class="header-gradient py-6">
+        <div class="max-w-6xl mx-auto px-4">
+            <h1 class="text-4xl font-bold text-white text-center">关于我们</h1>
+            <p class="text-xl text-center text-white mt-2">认识Monster Survivors背后的创作团队</p>
+        </div>
+    </div>
+
+    <!-- 主要内容区 -->
+    <div class="max-w-6xl mx-auto px-4 py-10">
+        <!-- 公司介绍 -->
+        <section class="mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">我们的故事</h2>
+                    <p class="text-gray-300 mb-4">紫月游戏工作室成立于2020年，由一群热爱独立游戏的开发者组成。我们的使命是创造能够带给玩家深刻体验的游戏，将创新gameplay与引人入胜的故事相结合。</p>
+                    <p class="text-gray-300 mb-4">经过两年的开发，我们的第一款游戏《Monster Survivors》于2023年3月正式发布，获得了玩家和评论家的广泛好评。我们相信游戏应该既有挑战性又有趣味性，能够让玩家在每次游戏中发现新的可能性。</p>
+                    <p class="text-gray-300">如今，我们的团队已经从最初的5人扩展到20多名才华横溢的开发者和设计师，共同致力于为Monster Survivors带来更多内容，并开发新的游戏项目。</p>
+                </div>
+                <div class="bg-game-dark p-6 rounded-lg shadow-xl">
+                    <img src="https://via.placeholder.com/600x400/1a1a2e/7928ca?text=Team+Photo" class="rounded-lg w-full mb-4" alt="团队合影">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="font-bold text-lg">紫月游戏工作室</p>
+                            <p class="text-gray-400 text-sm">创立于2020年 · 中国上海</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="social-icon text-blue-400 hover:text-blue-300">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="social-icon text-purple-400 hover:text-purple-300">
+                                <i class="fab fa-discord text-xl"></i>
+                            </a>
+                            <a href="#" class="social-icon text-red-400 hover:text-red-300">
+                                <i class="fab fa-youtube text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 我们的价值观 -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-center">我们的价值观</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-game-dark p-6 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 mx-auto bg-purple-800 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-lightbulb text-2xl text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">创新</h3>
+                    <p class="text-gray-300">我们不断探索游戏设计的新边界，挑战传统，寻找能够带给玩家新鲜体验的方式。</p>
+                </div>
+                
+                <div class="bg-game-dark p-6 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 mx-auto bg-purple-800 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-heart text-2xl text-red-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">热情</h3>
+                    <p class="text-gray-300">每一行代码、每一个像素，我们都倾注了对游戏的热爱和对玩家体验的关注。</p>
+                </div>
+                
+                <div class="bg-game-dark p-6 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 mx-auto bg-purple-800 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">社区</h3>
+                    <p class="text-gray-300">我们重视玩家反馈，与社区保持紧密联系，共同打造更好的游戏体验。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心团队 -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-center">认识核心团队</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- 团队成员1 -->
+                <div class="bg-game-dark rounded-lg overflow-hidden shadow-lg transition duration-300 team-card">
+                    <img src="https://via.placeholder.com/300x300/1a1a2e/7928ca?text=Zhang+Wei" class="w-full h-64 object-cover" alt="张伟照片">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">张伟</h3>
+                        <p class="text-purple-400 mb-2">创始人 & 游戏总监</p>
+                        <p class="text-gray-300 text-sm mb-3">拥有10年游戏开发经验，曾在网易和腾讯担任过高级开发职位。热爱Roguelike游戏，《Monster Survivors》的理念最初就来源于他的创意。</p>
+                        <div class="flex space-x-2">
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 团队成员2 -->
+                <div class="bg-game-dark rounded-lg overflow-hidden shadow-lg transition duration-300 team-card">
+                    <img src="https://via.placeholder.com/300x300/1a1a2e/7928ca?text=Lin+Mei" class="w-full h-64 object-cover" alt="林梅照片">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">林梅</h3>
+                        <p class="text-purple-400 mb-2">首席艺术师</p>
+                        <p class="text-gray-300 text-sm mb-3">毕业于中国美术学院，曾参与多款知名独立游戏的视觉设计。负责《Monster Survivors》的整体美术风格、角色设计和动画效果。</p>
+                        <div class="flex space-x-2">
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition">
+                                <i class="fab fa-artstation"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 团队成员3 -->
+                <div class="bg-game-dark rounded-lg overflow-hidden shadow-lg transition duration-300 team-card">
+                    <img src="https://via.placeholder.com/300x300/1a1a2e/7928ca?text=Chen+Jie" class="w-full h-64 object-cover" alt="陈杰照片">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">陈杰</h3>
+                        <p class="text-purple-400 mb-2">首席程序员</p>
+                        <p class="text-gray-300 text-sm mb-3">计算机科学硕士，曾在育碧上海工作多年。擅长游戏系统设计和性能优化，是《Monster Survivors》战斗系统和AI的主要开发者。</p>
+                        <div class="flex space-x-2">
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition">
+                                <i class="fab fa-stack-overflow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 团队成员4 -->
+                <div class="bg-game-dark rounded-lg overflow-hidden shadow-lg transition duration-300 team-card">
+                    <img src="https://via.placeholder.com/300x300/1a1a2e/7928ca?text=Wang+Fei" class="w-full h-64 object-cover" alt="王菲照片">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">王菲</h3>
+                        <p class="text-purple-400 mb-2">音频设计师</p>
+                        <p class="text-gray-300 text-sm mb-3">拥有音乐学院背景，曾为多款游戏和电影创作配乐。创造了《Monster Survivors》中所有音效和动态音乐系统，让游戏的紧张感得到极大提升。</p>
+                        <div class="flex space-x-2">
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition">
+                                <i class="fab fa-soundcloud"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition">
+                                <i class="fab fa-spotify"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 我们的成就 -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">游戏荣誉</h2>
+            <div class="bg-game-dark p-6 rounded-lg shadow-lg">
+                <ul class="space-y-6">
+                    <li class="flex items-start">
+                        <div class="flex-shrink-0 w-16 h-16 bg-yellow-800 bg-opacity-30 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-trophy text-2xl text-yellow-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">2023年度最佳独立游戏提名</h3>
+                            <p class="text-gray-400">中国游戏开发者大会 (CGDC)</p>
+                            <p class="text-gray-300 mt-1">《Monster Survivors》因其创新的玩法和精美的视觉效果获得了CGDC评委的高度赞扬。</p>
+                        </div>
+                    </li>
+                    
+                    <li class="flex items-start">
+                        <div class="flex-shrink-0 w-16 h-16 bg-blue-800 bg-opacity-30 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-medal text-2xl text-blue-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">玩家选择奖 - 最佳新游戏</h3>
+                            <p class="text-gray-400">IndiePlay独立游戏嘉年华 2023</p>
+                            <p class="text-gray-300 mt-1">由玩家投票选出，在所有参展游戏中获得最高的玩家评分。</p>
+                        </div>
+                    </li>
+                    
+                    <li class="flex items-start">
+                        <div class="flex-shrink-0 w-16 h-16 bg-green-800 bg-opacity-30 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-star text-2xl text-green-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Steam年度最受欢迎新游戏Top 20</h3>
+                            <p class="text-gray-400">Steam游戏平台 2023</p>
+                            <p class="text-gray-300 mt-1">在发布首月即获得了"特别好评"的评价，成为2023年最受欢迎的独立游戏之一。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 工作空间 -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">我们的工作空间</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <img src="https://via.placeholder.com/500x300/1a1a2e/7928ca?text=Office+Space+1" class="w-full rounded-lg shadow-lg" alt="办公室照片1">
+                <img src="https://via.placeholder.com/500x300/1a1a2e/7928ca?text=Office+Space+2" class="w-full rounded-lg shadow-lg" alt="办公室照片2">
+                <img src="https://via.placeholder.com/500x300/1a1a2e/7928ca?text=Office+Space+3" class="w-full rounded-lg shadow-lg" alt="办公室照片3">
+                <img src="https://via.placeholder.com/500x300/1a1a2e/7928ca?text=Team+Working" class="w-full rounded-lg shadow-lg" alt="团队工作照">
+                <img src="https://via.placeholder.com/500x300/1a1a2e/7928ca?text=Game+Testing" class="w-full rounded-lg shadow-lg" alt="游戏测试照片">
+                <img src="https://via.placeholder.com/500x300/1a1a2e/7928ca?text=Team+Event" class="w-full rounded-lg shadow-lg" alt="团队活动照片">
+            </div>
+        </section>
+
+        <!-- 加入我们 -->
+        <section class="mb-16">
+            <div class="bg-gradient-to-r from-purple-900 to-purple-700 p-8 rounded-lg shadow-xl">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="mb-6 md:mb-0 md:mr-10">
+                        <h2 class="text-3xl font-bold mb-2">与我们一起创造精彩游戏</h2>
+                        <p class="text-gray-200">我们正在寻找热爱游戏、充满激情的人才加入我们的团队。如果你对游戏开发有兴趣，不妨看看我们的职位空缺。</p>
+                    </div>
+                    <a href="#" class="bg-white text-purple-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg">
+                        查看招聘职位
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-game-dark py-10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold text-white flex items-center">
+                        <i class="fas fa-gamepad text-purple-500 mr-2"></i>
+                        Monster Survivors
+                    </h3>
+                    <p class="text-gray-400 mt-2">生存、升级、征服！</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="index.html" class="text-gray-400 hover:text-white">首页</a>
+                    <a href="guides.html" class="text-gray-400 hover:text-white">攻略</a>
+                    <a href="updates.html" class="text-gray-400 hover:text-white">更新</a>
+                    <a href="faq.html" class="text-gray-400 hover:text-white">常见问题</a>
+                    <a href="about.html" class="text-gray-400 hover:text-white">关于我们</a>
+                    <a href="contact.html" class="text-gray-400 hover:text-white">联系</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500">
+                <p>&copy; 2023 紫月游戏工作室. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
