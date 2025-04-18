@@ -9,32 +9,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        apple: {
-                            blue: '#0071e3',
-                            gray: '#f5f5f7',
-                            darkgray: '#86868b',
-                            black: '#1d1d1f'
-                        },
-                        game: {
-                            primary: '#6247aa',
-                            secondary: '#419D78',
-                            accent: '#FF5722',
-                            dark: '#2A2D34',
-                            light: '#EDF5FC'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
     <style type="text/tailwindcss">
         @layer components {
             .btn-primary {
@@ -78,8 +52,95 @@
                 50% { background-position: 100% 50%; }
                 100% { background-position: 0% 50%; }
             }
+            
+            /* 新增样式 */
+            .difficulty-card {
+                @apply rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer relative border-2;
+            }
+            .difficulty-card.easy {
+                @apply border-green-500 bg-gradient-to-br from-green-400 to-green-600;
+            }
+            .difficulty-card.normal {
+                @apply border-blue-500 bg-gradient-to-br from-blue-400 to-blue-600;
+            }
+            .difficulty-card.hard {
+                @apply border-red-500 bg-gradient-to-br from-red-400 to-red-600;
+            }
+            .difficulty-card .overlay {
+                @apply absolute inset-0 flex flex-col items-center justify-center text-white p-4 bg-black bg-opacity-20 backdrop-filter backdrop-blur-sm;
+            }
+            .difficulty-card .icon {
+                @apply w-16 h-16 rounded-full flex items-center justify-center mb-2 bg-white bg-opacity-20 border border-white border-opacity-30;
+            }
+            .score-popup {
+                @apply absolute pointer-events-none text-lg font-bold;
+                animation: score-float 1.5s ease-out forwards;
+            }
+            @keyframes score-float {
+                0% { opacity: 0; transform: translateY(10px); }
+                20% { opacity: 1; }
+                100% { opacity: 0; transform: translateY(-20px); }
+            }
+            .particle {
+                position: absolute;
+                border-radius: 50%;
+                pointer-events: none;
+                background-color: rgba(255, 255, 255, 0.5);
+                animation: particle-float 3s infinite ease-in-out;
+            }
+            @keyframes particle-float {
+                0% { transform: translateY(0) rotate(0deg); }
+                50% { transform: translateY(-20px) rotate(180deg); }
+                100% { transform: translateY(0) rotate(360deg); }
+            }
+            .pulse-ring {
+                position: relative;
+            }
+            .pulse-ring:before, .pulse-ring:after {
+                content: '';
+                position: absolute;
+                inset: -4px;
+                border-radius: inherit;
+                border: 2px solid;
+                animation: pulse-ring 2s linear infinite;
+                opacity: 0;
+            }
+            .pulse-ring:before {
+                animation-delay: 0.5s;
+            }
+            @keyframes pulse-ring {
+                0% { transform: scale(0.8); opacity: 0; }
+                50% { opacity: 0.5; }
+                100% { transform: scale(1.5); opacity: 0; }
+            }
         }
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            blue: '#0071e3',
+                            gray: '#f5f5f7',
+                            darkgray: '#86868b',
+                            black: '#1d1d1f'
+                        },
+                        game: {
+                            primary: '#6247aa',
+                            secondary: '#419D78',
+                            accent: '#FF5722',
+                            dark: '#2A2D34',
+                            light: '#EDF5FC'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="bg-game-light text-game-dark min-h-screen font-sans">
     <div class="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -92,7 +153,53 @@
         </div>
     </div>
 
-    <header class="bg-white shadow-md sticky top-8 z-40">
+    <!-- 全局导航菜单 -->
+    <nav class="bg-game-dark text-white py-3 sticky top-8 z-40 shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap items-center justify-between">
+                <!-- 左侧导航选项 -->
+                <ul class="flex flex-wrap items-center space-x-1 md:space-x-4 text-sm font-medium">
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 rounded hover:bg-game-primary transition-colors duration-200" data-translate="global_nav_home">
+                            <i class="fas fa-home mr-1"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 rounded hover:bg-game-primary transition-colors duration-200" data-translate="global_nav_games">
+                            <i class="fas fa-gamepad mr-1"></i> Games
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 rounded hover:bg-game-primary transition-colors duration-200" data-translate="global_nav_community">
+                            <i class="fas fa-users mr-1"></i> Community
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 rounded hover:bg-game-primary transition-colors duration-200" data-translate="global_nav_rankings">
+                            <i class="fas fa-trophy mr-1"></i> Rankings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 rounded hover:bg-game-primary transition-colors duration-200" data-translate="global_nav_support">
+                            <i class="fas fa-headset mr-1"></i> Support
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- 右侧用户操作 -->
+                <div class="flex items-center space-x-2 ml-auto md:ml-0">
+                    <button class="bg-game-primary hover:bg-purple-700 text-white px-3 py-1.5 rounded text-sm transition-colors duration-200" data-translate="global_nav_sign_in">
+                        <i class="fas fa-sign-in-alt mr-1"></i> Sign In
+                    </button>
+                    <button class="bg-transparent border border-game-primary hover:bg-game-primary text-white px-3 py-1.5 rounded text-sm transition-colors duration-200" data-translate="global_nav_sign_up">
+                        <i class="fas fa-user-plus mr-1"></i> Sign Up
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-white shadow-md sticky top-[5.5rem] z-30">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-4">
                 <div class="h-12 w-12 rounded-full bg-game-primary flex items-center justify-center text-white text-xl">
@@ -122,6 +229,236 @@
             <h1 class="text-4xl md:text-6xl font-bold mb-4" data-translate="hero_title">Monster Survivors</h1>
             <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto" data-translate="hero_subtitle">Survive endless waves of monsters in this thrilling action-packed game!</p>
             <a href="#game" class="btn-secondary text-lg px-8 py-3" data-translate="hero_cta">Play Now</a>
+        </section>
+
+        <!-- 游戏分类入口 - 重新设计游戏部分 -->
+        <section class="my-16" id="game-categories">
+            <h2 class="section-title mb-8" data-translate="categories_title">游戏分类</h2>
+            
+            <!-- 游戏盒子容器 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 游戏1: Mini Survivor -->
+                <div class="game-box bg-white rounded-lg shadow-xl overflow-hidden border border-game-primary transform transition duration-300 hover:shadow-2xl">
+                    <div class="bg-gradient-to-r from-purple-600 to-purple-800 text-white p-4">
+                        <h3 class="text-2xl font-bold flex items-center">
+                            <i class="fas fa-gamepad mr-2"></i>
+                            <span data-translate="mini_game_title">Mini Survivor</span>
+                            <span class="ml-2 px-2 py-0.5 bg-white text-purple-800 text-xs uppercase rounded-full">浏览器游戏</span>
+                        </h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-700 mb-4" data-translate="mini_game_desc">在浏览器中即玩的迷你版生存游戏！使用方向键或WASD移动，避开敌人并尽可能长时间生存。</p>
+                        
+                        <div class="flex items-center mb-4">
+                            <div class="flex-1 flex items-center">
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <i class="fas fa-star-half-alt text-yellow-500"></i>
+                                <span class="ml-2 text-sm text-gray-500">(4.5)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users text-game-primary mr-1"></i>
+                                <span class="text-sm text-gray-500">1.2k 玩家</span>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
+                            <div class="flex items-center bg-gray-100 p-2 rounded">
+                                <i class="fas fa-keyboard text-gray-700 mr-2"></i>
+                                <span>WASD / 方向键</span>
+                            </div>
+                            <div class="flex items-center bg-gray-100 p-2 rounded">
+                                <i class="fas fa-crosshairs text-gray-700 mr-2"></i>
+                                <span>自动攻击</span>
+                            </div>
+                            <div class="flex items-center bg-gray-100 p-2 rounded">
+                                <i class="fas fa-stopwatch text-gray-700 mr-2"></i>
+                                <span>5-10分钟</span>
+                            </div>
+                            <div class="flex items-center bg-gray-100 p-2 rounded">
+                                <i class="fas fa-medal text-gray-700 mr-2"></i>
+                                <span>排行榜系统</span>
+                            </div>
+                        </div>
+                        
+                        <a href="#mini-game" class="block w-full btn-primary text-center">
+                            <i class="fas fa-play mr-2"></i> 立即游玩
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 游戏2: Monster Survivors -->
+                <div class="game-box bg-white rounded-lg shadow-xl overflow-hidden border border-game-secondary transform transition duration-300 hover:shadow-2xl">
+                    <div class="bg-gradient-to-r from-green-600 to-green-800 text-white p-4">
+                        <h3 class="text-2xl font-bold flex items-center">
+                            <i class="fas fa-dragon mr-2"></i>
+                            <span data-translate="title">Monster Survivors</span>
+                            <span class="ml-2 px-2 py-0.5 bg-white text-green-800 text-xs uppercase rounded-full">完整版</span>
+                        </h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-700 mb-4" data-translate="about_p1">怪物生存者是一款令人兴奋的在线生存游戏，您将面对无尽的怪物浪潮。游戏目标简单却具有挑战性：尽可能长时间生存，同时击败成群的敌人。</p>
+                        
+                        <div class="flex items-center mb-4">
+                            <div class="flex-1 flex items-center">
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <i class="fas fa-star text-yellow-500"></i>
+                                <span class="ml-2 text-sm text-gray-500">(5.0)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users text-game-secondary mr-1"></i>
+                                <span class="text-sm text-gray-500">10k+ 玩家</span>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
+                            <div class="flex items-center bg-gray-100 p-2 rounded">
+                                <i class="fas fa-ghost text-gray-700 mr-2"></i>
+                                <span>多种敌人类型</span>
+                            </div>
+                            <div class="flex items-center bg-gray-100 p-2 rounded">
+                                <i class="fas fa-level-up-alt text-gray-700 mr-2"></i>
+                                <span>角色升级系统</span>
+                            </div>
+                            <div class="flex items-center bg-gray-100 p-2 rounded">
+                                <i class="fas fa-bolt text-gray-700 mr-2"></i>
+                                <span>多种武器道具</span>
+                            </div>
+                            <div class="flex items-center bg-gray-100 p-2 rounded">
+                                <i class="fas fa-trophy text-gray-700 mr-2"></i>
+                                <span>成就系统</span>
+                            </div>
+                        </div>
+                        
+                        <a href="#game" class="block w-full btn-secondary text-center">
+                            <i class="fas fa-play mr-2"></i> 开始游戏
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 游戏分类部分保持不变 -->
+            <h3 class="text-xl font-bold mt-12 mb-6">更多游戏分类</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- 动作游戏 -->
+                <a href="#" class="game-category-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="bg-gradient-to-r from-red-500 to-pink-500 h-2"></div>
+                    <div class="p-5 text-center">
+                        <div class="w-16 h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-fist-raised text-red-500 text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-1" data-translate="category_action">Action</h3>
+                        <p class="text-sm text-gray-600" data-translate="category_action_desc">Fast-paced games with combat and challenges</p>
+                    </div>
+                </a>
+                
+                <!-- 角色扮演 -->
+                <a href="#" class="game-category-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-2"></div>
+                    <div class="p-5 text-center">
+                        <div class="w-16 h-16 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-hat-wizard text-purple-500 text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-1" data-translate="category_rpg">RPG</h3>
+                        <p class="text-sm text-gray-600" data-translate="category_rpg_desc">Character development and immersive worlds</p>
+                    </div>
+                </a>
+                
+                <!-- 策略游戏 -->
+                <a href="#" class="game-category-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="bg-gradient-to-r from-blue-500 to-cyan-500 h-2"></div>
+                    <div class="p-5 text-center">
+                        <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-chess text-blue-500 text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-1" data-translate="category_strategy">Strategy</h3>
+                        <p class="text-sm text-gray-600" data-translate="category_strategy_desc">Planning and tactical decision making</p>
+                    </div>
+                </a>
+                
+                <!-- 生存游戏 -->
+                <a href="#" class="game-category-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="bg-gradient-to-r from-green-500 to-emerald-500 h-2"></div>
+                    <div class="p-5 text-center">
+                        <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-campground text-green-500 text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-1" data-translate="category_survival">Survival</h3>
+                        <p class="text-sm text-gray-600" data-translate="category_survival_desc">Resource management and endurance</p>
+                    </div>
+                </a>
+            </div>
+            <div class="text-center mt-6">
+                <a href="#" class="inline-flex items-center text-game-primary hover:underline font-medium">
+                    <span data-translate="view_all_categories">View All Categories</span>
+                    <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- 新游戏概念展示 -->
+        <section class="my-16" id="new-game">
+            <div class="relative bg-game-dark rounded-xl overflow-hidden">
+                <!-- 背景图层 -->
+                <div class="absolute inset-0 opacity-20" style="background-image: url('https://via.placeholder.com/1200x600/2A2D34/2A2D34'); background-size: cover;"></div>
+                
+                <!-- 内容 -->
+                <div class="relative z-10 container mx-auto px-4 py-12">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <!-- 左侧游戏信息 -->
+                        <div class="w-full md:w-1/2 text-white mb-8 md:mb-0 md:pr-8">
+                            <div class="inline-block bg-game-accent px-3 py-1 rounded text-sm font-bold mb-4" data-translate="new_game_label">NEW CONCEPT</div>
+                            <h2 class="text-4xl font-bold mb-4" data-translate="new_game_title">Cosmic Defenders</h2>
+                            <p class="text-lg mb-6" data-translate="new_game_desc">An epic space adventure where you protect the galaxy from interdimensional invaders. Build your team of defenders, upgrade your starship, and engage in tactical combat.</p>
+                            
+                            <!-- 游戏特性列表 -->
+                            <div class="grid grid-cols-2 gap-4 mb-8">
+                                <div class="flex items-center">
+                                    <i class="fas fa-planet-ringed text-game-accent mr-2"></i>
+                                    <span data-translate="new_game_feature1">Space Exploration</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-user-astronaut text-game-accent mr-2"></i>
+                                    <span data-translate="new_game_feature2">Character Development</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-rocket text-game-accent mr-2"></i>
+                                    <span data-translate="new_game_feature3">Ship Customization</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-satellite text-game-accent mr-2"></i>
+                                    <span data-translate="new_game_feature4">Strategic Combat</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 行动按钮 -->
+                            <div class="flex space-x-4">
+                                <a href="#" class="btn-secondary" data-translate="new_game_learn_more">Learn More</a>
+                                <a href="#" class="bg-transparent border border-white text-white py-2 px-6 rounded-full hover:bg-white hover:text-game-dark transition duration-300 font-semibold" data-translate="new_game_join_waitlist">Join Waitlist</a>
+                            </div>
+                        </div>
+                        
+                        <!-- 右侧游戏图片 -->
+                        <div class="w-full md:w-1/2">
+                            <img src="https://via.placeholder.com/600x400/6247aa/ffffff?text=Cosmic+Defenders" alt="Cosmic Defenders Game" class="rounded-lg shadow-2xl w-full transform transition-transform duration-500 hover:scale-105">
+                            <div class="mt-4 bg-black bg-opacity-50 p-3 rounded-lg">
+                                <div class="flex justify-between text-xs text-white">
+                                    <span data-translate="new_game_dev_status">Development Status: 65%</span>
+                                    <span data-translate="new_game_release">Expected Release: Q2 2024</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-1.5 mt-2">
+                                    <div class="bg-game-accent h-1.5 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="game" class="my-16">
@@ -456,10 +793,61 @@
                 nav_gameplay: "Gameplay Guide",
                 nav_tips: "Tips & Tricks",
                 nav_updates: "Updates",
+                // Global Navigation
+                global_nav_home: "Home",
+                global_nav_games: "Games",
+                global_nav_community: "Community",
+                global_nav_rankings: "Rankings",
+                global_nav_support: "Support",
+                global_nav_sign_in: "Sign In",
+                global_nav_sign_up: "Sign Up",
                 // Hero Section
                 hero_title: "Monster Survivors",
                 hero_subtitle: "Survive endless waves of monsters in this thrilling action-packed game!",
                 hero_cta: "Play Now",
+                // Game Categories
+                categories_title: "Game Categories",
+                category_action: "Action",
+                category_action_desc: "Fast-paced games with combat and challenges",
+                category_rpg: "RPG",
+                category_rpg_desc: "Character development and immersive worlds",
+                category_strategy: "Strategy",
+                category_strategy_desc: "Planning and tactical decision making",
+                category_survival: "Survival",
+                category_survival_desc: "Resource management and endurance",
+                view_all_categories: "View All Categories",
+                // New Game Concept
+                new_game_label: "NEW CONCEPT",
+                new_game_title: "Cosmic Defenders",
+                new_game_desc: "An epic space adventure where you protect the galaxy from interdimensional invaders. Build your team of defenders, upgrade your starship, and engage in tactical combat.",
+                new_game_feature1: "Space Exploration",
+                new_game_feature2: "Character Development",
+                new_game_feature3: "Ship Customization",
+                new_game_feature4: "Strategic Combat",
+                new_game_learn_more: "Learn More",
+                new_game_join_waitlist: "Join Waitlist",
+                new_game_dev_status: "Development Status: 65%",
+                new_game_release: "Expected Release: Q2 2024",
+                // Mini Game
+                mini_game_title: "Play Mini Survivor",
+                mini_game_desc: "Try this mini version of Monster Survivors right in your browser! Use arrow keys or WASD to move, avoid enemies and survive as long as possible.",
+                mini_game_start: "Start Game",
+                mini_game_reset: "Reset",
+                mini_game_score: "Score:",
+                mini_game_time: "Time:",
+                mini_game_health: "Health:",
+                mini_game_over: "Game Over",
+                mini_game_over_desc: "You survived <span id='finalTime'>0</span> seconds and scored <span id='finalScore'>0</span> points!",
+                mini_game_play_again: "Play Again",
+                mini_game_controls: "Controls",
+                mini_game_control_move: "WASD or Arrow Keys to move",
+                mini_game_control_attack: "Attacks are automatic",
+                mini_game_tips: "Tips",
+                mini_game_tip_avoid: "Avoid red enemy monsters",
+                mini_game_tip_collect: "Collect green health pickups",
+                mini_game_scoring: "Scoring",
+                mini_game_score_survive: "生存每秒+1分",
+                mini_game_score_enemy: "每击败一个敌人+5分",
                 // Section Titles
                 game_section_title: "Play Monster Survivors",
                 about_section_title: "About Monster Survivors",
@@ -475,7 +863,39 @@
                 // Footer
                 footer_privacy: "Privacy Policy",
                 footer_terms: "Terms of Service",
-                footer_contact: "Contact"
+                footer_contact: "Contact",
+                // Game Cover
+                mini_game_cover_title: "Mini Survivor",
+                mini_game_cover_desc: "Survive, fight, and become the last one standing! Use arrow keys or WASD to move, attack automatically.",
+                mini_game_cover_controls: "WASD / Arrow Keys to move",
+                mini_game_cover_auto_attack: "Auto Attack",
+                mini_game_cover_start: "Start Game",
+                // Leaderboard
+                mini_game_leaderboard: "Leaderboard",
+                // Upgrade
+                upgrade_title: "Level Up!",
+                upgrade_desc: "Choose an ability to enhance:",
+                upgrade_health: "Health Boost",
+                upgrade_health_desc: "Max health +20",
+                upgrade_speed: "Speed Boost",
+                upgrade_speed_desc: "Movement speed +1",
+                upgrade_damage: "Damage Boost",
+                upgrade_damage_desc: "Bullet damage +10",
+                
+                // Difficulty
+                difficulty_title: "Select Difficulty",
+                difficulty_desc: "Choose game difficulty level:",
+                difficulty_easy: "Easy",
+                difficulty_easy_desc: "More health, weaker enemies",
+                difficulty_normal: "Normal",
+                difficulty_normal_desc: "Balanced game experience",
+                difficulty_hard: "Hard",
+                difficulty_hard_desc: "More enemies, higher damage",
+                mini_game_difficulty_hard: "困难",
+                mini_game_difficulty_hard_desc: "敌人更多，伤害更高",
+                mini_game_select_difficulty: "选择适合你的游戏难度:",
+                mini_game_difficulty_title: "选择难度",
+                mini_game_return_to_cover: "返回封面",
             },
             zh: {
                 // Navigation
@@ -487,10 +907,61 @@
                 nav_gameplay: "游戏指南",
                 nav_tips: "技巧攻略",
                 nav_updates: "更新动态",
+                // Global Navigation
+                global_nav_home: "首页",
+                global_nav_games: "游戏库",
+                global_nav_community: "社区",
+                global_nav_rankings: "排行榜",
+                global_nav_support: "客服支持",
+                global_nav_sign_in: "登录",
+                global_nav_sign_up: "注册",
                 // Hero Section
                 hero_title: "怪物生存者",
                 hero_subtitle: "在这款刺激的动作游戏中生存，对抗无尽的怪物浪潮！",
                 hero_cta: "立即开始",
+                // Game Categories
+                categories_title: "游戏分类",
+                category_action: "动作游戏",
+                category_action_desc: "快节奏的战斗与挑战",
+                category_rpg: "角色扮演",
+                category_rpg_desc: "角色成长与沉浸式世界",
+                category_strategy: "策略游戏",
+                category_strategy_desc: "规划与战术决策",
+                category_survival: "生存游戏",
+                category_survival_desc: "资源管理与耐力挑战",
+                view_all_categories: "查看全部分类",
+                // New Game Concept
+                new_game_label: "新游戏概念",
+                new_game_title: "宇宙防卫者",
+                new_game_desc: "一场史诗级太空冒险，您将保卫银河系免受异次元入侵者的威胁。组建您的防卫者团队，升级您的星际战舰，进行战术性战斗。",
+                new_game_feature1: "太空探索",
+                new_game_feature2: "角色发展",
+                new_game_feature3: "战舰定制",
+                new_game_feature4: "策略战斗",
+                new_game_learn_more: "了解更多",
+                new_game_join_waitlist: "加入候补名单",
+                new_game_dev_status: "开发进度: 65%",
+                new_game_release: "预计发布: 2024年第二季度",
+                // Mini Game
+                mini_game_title: "体验迷你生存者",
+                mini_game_desc: "在浏览器中尝试怪物生存者的迷你版本！使用方向键或WASD移动，避开敌人并尽可能长时间生存。",
+                mini_game_start: "开始游戏",
+                mini_game_reset: "重置",
+                mini_game_score: "分数:",
+                mini_game_time: "时间:",
+                mini_game_health: "生命值:",
+                mini_game_over: "游戏结束",
+                mini_game_over_desc: "您生存了 <span id='finalTime'>0</span> 秒，获得了 <span id='finalScore'>0</span> 分!",
+                mini_game_play_again: "再玩一次",
+                mini_game_controls: "控制方式",
+                mini_game_control_move: "WASD或方向键移动",
+                mini_game_control_attack: "攻击为自动进行",
+                mini_game_tips: "游戏提示",
+                mini_game_tip_avoid: "避开红色怪物",
+                mini_game_tip_collect: "收集绿色生命道具",
+                mini_game_scoring: "计分规则",
+                mini_game_score_survive: "生存每秒+1分",
+                mini_game_score_enemy: "每击败一个敌人+5分",
                 // Section Titles
                 game_section_title: "体验怪物生存者",
                 about_section_title: "关于怪物生存者",
@@ -506,7 +977,39 @@
                 // Footer
                 footer_privacy: "隐私政策",
                 footer_terms: "服务条款",
-                footer_contact: "联系我们"
+                footer_contact: "联系我们",
+                // Game Cover
+                mini_game_cover_title: "迷你生存者",
+                mini_game_cover_desc: "生存、战斗，成为最后的幸存者！使用方向键或WASD移动，自动攻击敌人。",
+                mini_game_cover_controls: "WASD / 方向键移动",
+                mini_game_cover_auto_attack: "自动攻击",
+                mini_game_cover_start: "开始游戏",
+                // Leaderboard
+                mini_game_leaderboard: "排行榜",
+                // Upgrade
+                upgrade_title: "升级!",
+                upgrade_desc: "选择一项能力提升:",
+                upgrade_health: "生命提升",
+                upgrade_health_desc: "最大生命值+20",
+                upgrade_speed: "速度提升",
+                upgrade_speed_desc: "移动速度+1",
+                upgrade_damage: "攻击提升",
+                upgrade_damage_desc: "子弹伤害+10",
+                
+                // Difficulty
+                difficulty_title: "选择难度",
+                difficulty_desc: "选择适合你的游戏难度:",
+                difficulty_easy: "简单",
+                difficulty_easy_desc: "更多生命值，敌人更弱",
+                difficulty_normal: "普通",
+                difficulty_normal_desc: "平衡的游戏体验",
+                difficulty_hard: "困难",
+                difficulty_hard_desc: "敌人更多，伤害更高",
+                mini_game_difficulty_hard: "困难",
+                mini_game_difficulty_hard_desc: "敌人更多，伤害更高",
+                mini_game_select_difficulty: "选择适合你的游戏难度:",
+                mini_game_difficulty_title: "选择难度",
+                mini_game_return_to_cover: "返回封面",
             }
         };
 
@@ -530,7 +1033,7 @@
             elements.forEach(element => {
                 const key = element.getAttribute('data-translate');
                 if (translations[lang] && translations[lang][key]) {
-                    element.textContent = translations[lang][key];
+                    element.innerHTML = translations[lang][key];
                 }
             });
 
@@ -553,7 +1056,1262 @@
                     }
                 });
             }
+            
+            // 初始化游戏
+            initGame();
         });
+        
+        // Mini Survivor 游戏代码
+        function initGame() {
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+            const startBtn = document.getElementById('startGame');
+            const resetBtn = document.getElementById('resetGame');
+            const playAgainBtn = document.getElementById('playAgain');
+            const startFromCoverBtn = document.getElementById('startFromCover');
+            const gameOverlay = document.getElementById('gameOverlay');
+            const gameCover = document.getElementById('gameCover');
+            const upgradeMenu = document.getElementById('upgradeMenu');
+            const difficultyMenu = document.getElementById('difficultyMenu');
+            const easyMode = document.getElementById('easyMode');
+            const normalMode = document.getElementById('normalMode');
+            const hardMode = document.getElementById('hardMode');
+            const upgrade1 = document.getElementById('upgrade1');
+            const upgrade2 = document.getElementById('upgrade2');
+            const upgrade3 = document.getElementById('upgrade3');
+            const scoreDisplay = document.getElementById('gameScore');
+            const timeDisplay = document.getElementById('gameTime');
+            const healthDisplay = document.getElementById('gameHealth');
+            const finalTimeDisplay = document.getElementById('finalTime');
+            const finalScoreDisplay = document.getElementById('finalScore');
+            
+            // 移除图片加载相关代码
+            
+            let gameActive = false;
+            let gameLoopStarted = false; // 追踪游戏循环是否已启动
+            let gameTime = 0;
+            let gameScore = 0;
+            let lastUpgradeScore = 0;
+            let nextUpgradeScore = 50; // 降低首次升级所需分数到50
+            let gameInterval;
+            let timeInterval;
+            let gamePaused = false;
+            let gameDifficulty = 'normal'; // 默认普通难度
+            
+            // 玩家属性
+            const playerStats = {
+                maxHealth: 120, // 增加初始生命值
+                speed: 3, // 将初始速度从4降到3
+                maxSpeed: 5, // 降低最大速度上限从7到5
+                damage: 35, // 增加初始伤害
+                shotSpeed: 400, // 加快射击速度
+                level: 1
+            };
+            
+            // 敌人生成设置
+            const enemySettings = {
+                spawnRate: 1500, // 默认1.5秒生成一个敌人
+                damage: 0.3, // 降低敌人伤害
+                health: 100,
+                count: 0, // 当前敌人总数
+                maxCount: 20 // 场上最大敌人数量
+            };
+            
+            // 难度设置
+            const difficulties = {
+                easy: {
+                    playerHealth: 150,
+                    playerDamage: 40,
+                    enemySpawnRate: 2000,
+                    enemyDamage: 0.2,
+                    enemyHealth: 80,
+                    upgradeFrequency: 40 // 每40分升级一次
+                },
+                normal: {
+                    playerHealth: 120,
+                    playerDamage: 35,
+                    enemySpawnRate: 1500,
+                    enemyDamage: 0.3,
+                    enemyHealth: 100,
+                    upgradeFrequency: 50 // 每50分升级一次
+                },
+                hard: {
+                    playerHealth: 100,
+                    playerDamage: 30,
+                    enemySpawnRate: 1000,
+                    enemyDamage: 0.5,
+                    enemyHealth: 120,
+                    upgradeFrequency: 60 // 每60分升级一次
+                }
+            };
+            
+            // 删除这里开始到"playerStats"重复声明之间的所有代码
+            
+            // 玩家角色
+            const player = {
+                x: canvas.width / 2,
+                y: canvas.height / 2,
+                radius: 20,
+                color: '#6247aa',
+                speed: playerStats.speed,
+                health: playerStats.maxHealth,
+                direction: {
+                    up: false,
+                    down: false,
+                    left: false,
+                    right: false
+                },
+                update: function() {
+                    // 移动玩家
+                    if (this.direction.up && this.y - this.radius > 0) this.y -= this.speed;
+                    if (this.direction.down && this.y + this.radius < canvas.height) this.y += this.speed;
+                    if (this.direction.left && this.x - this.radius > 0) this.x -= this.speed;
+                    if (this.direction.right && this.x + this.radius < canvas.width) this.x += this.speed;
+                    
+                    // 绘制简化的卡通玩家 - 紫色基础加脸部表情
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                    ctx.closePath();
+                    
+                    // 眼睛
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(this.x - 10, this.y - 5, 6, 6);
+                    ctx.fillRect(this.x + 4, this.y - 5, 6, 6);
+                    
+                    // 嘴巴
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y + 5, 6, 0, Math.PI);
+                    ctx.strokeStyle = 'white';
+                    ctx.stroke();
+                    ctx.closePath();
+                    
+                    // 绘制玩家血条
+                    ctx.beginPath();
+                    ctx.rect(this.x - this.radius, this.y - this.radius - 10, this.radius * 2, 5);
+                    ctx.fillStyle = '#ddd';
+                    ctx.fill();
+                    ctx.closePath();
+                    
+                    ctx.beginPath();
+                    ctx.rect(this.x - this.radius, this.y - this.radius - 10, (this.radius * 2) * (this.health / playerStats.maxHealth), 5);
+                    ctx.fillStyle = this.health > playerStats.maxHealth/2 ? '#58B368' : '#D64045';
+                    ctx.fill();
+                    ctx.closePath();
+                    
+                    // 显示等级
+                    ctx.font = '12px Arial';
+                    ctx.fillStyle = 'white';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('Lv.' + playerStats.level, this.x, this.y - this.radius - 15);
+                }
+            };
+            
+            // 敌人数组和子弹数组
+            const enemies = [];
+            const bullets = [];
+            const healthPickups = [];
+            
+            // 创建敌人函数
+            function createEnemy() {
+                // 如果敌人已经达到最大数量，不再生成
+                if (enemies.length >= enemySettings.maxCount) return;
+                
+                enemySettings.count++;
+                
+                let x, y;
+                // 在屏幕外生成敌人
+                const side = Math.floor(Math.random() * 4);
+                switch(side) {
+                    case 0: // 上
+                        x = Math.random() * canvas.width;
+                        y = -20;
+                        break;
+                    case 1: // 右
+                        x = canvas.width + 20;
+                        y = Math.random() * canvas.height;
+                        break;
+                    case 2: // 下
+                        x = Math.random() * canvas.width;
+                        y = canvas.height + 20;
+                        break;
+                    case 3: // 左
+                        x = -20;
+                        y = Math.random() * canvas.height;
+                        break;
+                }
+                
+                const enemy = {
+                    x: x,
+                    y: y,
+                    radius: 15,
+                    color: '#D64045',
+                    speed: 1 + Math.random() * 1.5, // 降低敌人速度
+                    health: enemySettings.health,
+                    update: function() {
+                        // 向玩家移动
+                        const dx = player.x - this.x;
+                        const dy = player.y - this.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        this.x += (dx / distance) * this.speed;
+                        this.y += (dy / distance) * this.speed;
+                        
+                        // 绘制简化的卡通敌人 - 红色基础加凶恶表情
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.fill();
+                        ctx.closePath();
+                        
+                        // 眼睛
+                        ctx.fillStyle = 'white';
+                        ctx.fillRect(this.x - 8, this.y - 5, 4, 4);
+                        ctx.fillRect(this.x + 4, this.y - 5, 4, 4);
+                        
+                        // 嘴巴
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y + 5, 4, Math.PI, Math.PI * 2);
+                        ctx.fillStyle = 'white';
+                        ctx.fill();
+                        ctx.closePath();
+                        
+                        // 检测与玩家的碰撞
+                        const playerDist = Math.sqrt(Math.pow(this.x - player.x, 2) + Math.pow(this.y - player.y, 2));
+                        if (playerDist < this.radius + player.radius) {
+                            player.health -= enemySettings.damage;
+                            healthDisplay.textContent = Math.max(0, Math.floor(player.health));
+                            
+                            // 玩家死亡
+                            if (player.health <= 0) {
+                                endGame();
+                            }
+                        }
+                        
+                        // 检测与子弹的碰撞
+                        bullets.forEach((bullet, bulletIndex) => {
+                            const bulletDist = Math.sqrt(Math.pow(this.x - bullet.x, 2) + Math.pow(this.y - bullet.y, 2));
+                            if (bulletDist < this.radius + bullet.radius) {
+                                this.health -= bullet.damage;
+                                bullets.splice(bulletIndex, 1);
+                                
+                                // 敌人死亡
+                                if (this.health <= 0) {
+                                    const enemyIndex = enemies.indexOf(this);
+                                    if (enemyIndex > -1) {
+                                        enemies.splice(enemyIndex, 1);
+                                        enemySettings.count--;
+                                        gameScore += 5;
+                                        scoreDisplay.textContent = gameScore;
+                                        
+                                        // 随机掉落生命道具 - 提高掉落率
+                                        if (Math.random() < 0.3) { // 提高到30%的掉落率
+                                            createHealthPickup(this.x, this.y);
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    },
+                    checkCollision: function() {
+                        // ... existing collision code ...
+                        if (distance < this.radius + player.radius) {
+                            // Existing damage code
+                            player.health -= enemySettings.damage;
+                            healthDisplay.textContent = Math.floor(player.health);
+                            
+                            // Add visual feedback
+                            const canvas = document.getElementById('gameCanvas');
+                            canvas.style.animation = 'shake 0.2s ease-in-out';
+                            setTimeout(() => {
+                                canvas.style.animation = '';
+                            }, 200);
+                            
+                            if (player.health <= 0) {
+                                endGame();
+                            }
+                        }
+                    }
+                };
+                
+                enemies.push(enemy);
+            }
+            
+            // 创建子弹函数
+            function createBullet() {
+                const bullet = {
+                    x: player.x,
+                    y: player.y,
+                    radius: 5,
+                    color: '#0071e3',
+                    speed: 7,
+                    damage: playerStats.damage, // 使用玩家的伤害属性
+                    targetX: null,
+                    targetY: null,
+                    update: function() {
+                        // 向最近的敌人移动
+                        if (this.targetX === null || this.targetY === null) {
+                            // 找最近的敌人
+                            let closestEnemy = null;
+                            let closestDistance = Infinity;
+                            
+                            enemies.forEach(enemy => {
+                                const dist = Math.sqrt(Math.pow(enemy.x - player.x, 2) + Math.pow(enemy.y - player.y, 2));
+                                if (dist < closestDistance) {
+                                    closestDistance = dist;
+                                    closestEnemy = enemy;
+                                }
+                            });
+                            
+                            if (closestEnemy) {
+                                const dx = closestEnemy.x - player.x;
+                                const dy = closestEnemy.y - player.y;
+                                const angle = Math.atan2(dy, dx);
+                                
+                                this.targetX = Math.cos(angle);
+                                this.targetY = Math.sin(angle);
+                            } else {
+                                // 如果没有敌人，随机方向
+                                const angle = Math.random() * Math.PI * 2;
+                                this.targetX = Math.cos(angle);
+                                this.targetY = Math.sin(angle);
+                            }
+                        }
+                        
+                        // 移动子弹
+                        this.x += this.targetX * this.speed;
+                        this.y += this.targetY * this.speed;
+                        
+                        // 绘制简化的星形子弹
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.fill();
+                        ctx.closePath();
+                        
+                        // 亮光效果
+                        ctx.beginPath();
+                        ctx.arc(this.x - 1, this.y - 1, 2, 0, Math.PI * 2);
+                        ctx.fillStyle = 'white';
+                        ctx.fill();
+                        ctx.closePath();
+                        
+                        // 移除超出边界的子弹
+                        if (this.x < -this.radius || this.x > canvas.width + this.radius ||
+                            this.y < -this.radius || this.y > canvas.height + this.radius) {
+                            const index = bullets.indexOf(this);
+                            if (index > -1) {
+                                bullets.splice(index, 1);
+                            }
+                        }
+                    }
+                };
+                
+                bullets.push(bullet);
+            }
+            
+            // 创建生命道具函数
+            function createHealthPickup(x, y) {
+                const pickup = {
+                    x: x,
+                    y: y,
+                    radius: 10,
+                    color: '#58B368',
+                    update: function() {
+                        // 绘制绿色十字生命道具
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.fill();
+                        ctx.closePath();
+                        
+                        // 十字标记
+                        ctx.beginPath();
+                        ctx.moveTo(this.x - 5, this.y);
+                        ctx.lineTo(this.x + 5, this.y);
+                        ctx.moveTo(this.x, this.y - 5);
+                        ctx.lineTo(this.x, this.y + 5);
+                        ctx.strokeStyle = 'white';
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                        ctx.closePath();
+                        
+                        // 检测与玩家的碰撞
+                        const dist = Math.sqrt(Math.pow(this.x - player.x, 2) + Math.pow(this.y - player.y, 2));
+                        if (dist < this.radius + player.radius) {
+                            player.health = Math.min(playerStats.maxHealth, player.health + 30); // 增加治疗量
+                            healthDisplay.textContent = Math.floor(player.health);
+                            
+                            const index = healthPickups.indexOf(this);
+                            if (index > -1) {
+                                healthPickups.splice(index, 1);
+                            }
+                        }
+                    }
+                };
+                
+                healthPickups.push(pickup);
+            }
+            
+            // 键盘控制 - 完全替换这部分代码
+            function setupKeyboardControls() {
+                // 先移除可能存在的事件监听器，防止重复绑定
+                window.removeEventListener('keydown', handleKeyDown);
+                window.removeEventListener('keyup', handleKeyUp);
+                
+                // 重新添加事件监听器
+                window.addEventListener('keydown', handleKeyDown);
+                window.addEventListener('keyup', handleKeyUp);
+                
+                console.log("键盘控制已设置");
+            }
+            
+            // 键盘按下处理函数
+            function handleKeyDown(e) {
+                if (!gameActive) return;
+                
+                switch(e.key) {
+                    case 'ArrowUp':
+                    case 'w':
+                    case 'W':
+                        player.direction.up = true;
+                        e.preventDefault(); // 阻止页面滚动
+                        break;
+                    case 'ArrowDown':
+                    case 's':
+                    case 'S':
+                        player.direction.down = true;
+                        e.preventDefault(); // 阻止页面滚动
+                        break;
+                    case 'ArrowLeft':
+                    case 'a':
+                    case 'A':
+                        player.direction.left = true;
+                        e.preventDefault(); // 阻止页面滚动
+                        break;
+                    case 'ArrowRight':
+                    case 'd':
+                    case 'D':
+                        player.direction.right = true;
+                        e.preventDefault(); // 阻止页面滚动
+                        break;
+                }
+            }
+            
+            // 键盘释放处理函数
+            function handleKeyUp(e) {
+                switch(e.key) {
+                    case 'ArrowUp':
+                    case 'w':
+                    case 'W':
+                        player.direction.up = false;
+                        break;
+                    case 'ArrowDown':
+                    case 's':
+                    case 'S':
+                        player.direction.down = false;
+                        break;
+                    case 'ArrowLeft':
+                    case 'a':
+                    case 'A':
+                        player.direction.left = false;
+                        break;
+                    case 'ArrowRight':
+                    case 'd':
+                    case 'D':
+                        player.direction.right = false;
+                        break;
+                }
+            }
+            
+            // 游戏循环
+            function gameLoop() {
+                if (!gameActive) return; // 如果游戏不活跃则不执行
+                
+                try {
+                    // 清除画布
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    // 更新玩家
+                    player.update();
+                    
+                    // 更新敌人
+                    enemies.forEach(enemy => enemy.update());
+                    
+                    // 更新子弹
+                    bullets.forEach(bullet => bullet.update());
+                    
+                    // 更新生命道具
+                    healthPickups.forEach(pickup => pickup.update());
+                    
+                    // 检查升级
+                    checkUpgrade();
+                    
+                    // 请求下一帧
+                    if (gameActive && !gamePaused) {
+                        requestAnimationFrame(gameLoop);
+                    }
+                } catch(e) {
+                    console.error("游戏循环发生错误:", e);
+                    endGame();
+                }
+            }
+            
+            // 检查升级
+            function checkUpgrade() {
+                if (gameScore >= nextUpgradeScore) {
+                    pauseGame();
+                    showUpgradeMenu();
+                    lastUpgradeScore = nextUpgradeScore;
+                    nextUpgradeScore += difficulties[gameDifficulty].upgradeFrequency; // 根据难度设置下次升级所需分数
+                }
+            }
+            
+            // 暂停游戏
+            function pauseGame() {
+                if (!gameActive || gamePaused) return;
+                
+                gamePaused = true;
+                clearInterval(gameInterval);
+                clearInterval(window.gameTimers.shootInterval);
+                clearInterval(window.gameTimers.timeInterval);
+                
+                console.log("游戏已暂停");
+            }
+            
+            // 恢复游戏
+            function resumeGame() {
+                if (!gameActive || !gamePaused) return;
+                
+                gamePaused = false;
+                
+                // 使用requestAnimationFrame恢复游戏循环，而不是setInterval
+                requestAnimationFrame(gameLoop);
+                
+                // 自动射击
+                window.gameTimers.shootInterval = setInterval(function() {
+                    if (gameActive && !gamePaused) createBullet();
+                }, playerStats.shotSpeed);
+                
+                // 计时和得分
+                window.gameTimers.timeInterval = setInterval(function() {
+                    if (gameActive && !gamePaused) {
+                        gameTime++;
+                        gameScore++;
+                        timeDisplay.textContent = gameTime;
+                        scoreDisplay.textContent = gameScore;
+                    }
+                }, 1000);
+                
+                console.log("游戏已恢复");
+            }
+            
+            // 显示升级菜单
+            function showUpgradeMenu() {
+                upgradeMenu.classList.remove('hidden');
+            }
+            
+            // 关闭升级菜单
+            function hideUpgradeMenu() {
+                upgradeMenu.classList.add('hidden');
+            }
+            
+            // 升级选项1：提升生命值
+            function upgradeHealth() {
+                playerStats.maxHealth += 20;
+                player.health = Math.min(playerStats.maxHealth, player.health + 20);
+                healthDisplay.textContent = Math.floor(player.health);
+                playerStats.level++;
+                hideUpgradeMenu();
+                resumeGame();
+                
+                // 显示升级特效
+                showUpgradeEffect('生命值提升!', '+20 HP', '#58B368');
+            }
+            
+            // 升级选项2：提升速度
+            function upgradeSpeed() {
+                // 简化速度升级逻辑
+                if (playerStats.speed < playerStats.maxSpeed) {
+                    playerStats.speed += 0.2; // 固定增幅0.2
+                    if (playerStats.speed > playerStats.maxSpeed) {
+                        playerStats.speed = playerStats.maxSpeed; // 确保不超过上限
+                    }
+                    player.speed = playerStats.speed;
+                    showUpgradeEffect('速度提升!', '+0.2 速度', '#FFD700');
+                } else {
+                    showUpgradeEffect('速度已达上限!', '无法再提升', '#FFD700');
+                }
+                
+                playerStats.level++;
+                hideUpgradeMenu();
+                resumeGame();
+            }
+            
+            // 升级选项3：提升伤害
+            function upgradeDamage() {
+                playerStats.damage += 10;
+                playerStats.level++;
+                hideUpgradeMenu();
+                resumeGame();
+                
+                // 显示升级特效
+                showUpgradeEffect('攻击提升!', '+10 伤害', '#0071e3');
+            }
+            
+            // 显示升级特效
+            function showUpgradeEffect(title, desc, color) {
+                // 创建升级文本效果
+                const textEffect = {
+                    x: player.x,
+                    y: player.y - 40,
+                    alpha: 1.0,
+                    update: function() {
+                        this.y -= 1;
+                        this.alpha -= 0.02;
+                        
+                        if (this.alpha > 0) {
+                            ctx.globalAlpha = this.alpha;
+                            ctx.font = 'bold 16px Arial';
+                            ctx.fillStyle = color;
+                            ctx.textAlign = 'center';
+                            ctx.fillText(title, this.x, this.y);
+                            ctx.font = '14px Arial';
+                            ctx.fillText(desc, this.x, this.y + 20);
+                            ctx.globalAlpha = 1.0;
+                        }
+                    }
+                };
+                
+                // 添加到游戏循环中显示
+                const effectInterval = setInterval(function() {
+                    if (textEffect.alpha <= 0) {
+                        clearInterval(effectInterval);
+                    } else {
+                        textEffect.update();
+                    }
+                }, 50);
+            }
+            
+            // 开始游戏
+            function startGame() {
+                if (gameActive) return;
+                
+                console.log("开始游戏");
+                
+                // 隐藏游戏封面和难度选择菜单
+                gameCover.style.display = 'none';
+                difficultyMenu.classList.add('hidden');
+                
+                // 重置游戏状态
+                resetGame();
+                
+                // 开始游戏循环
+                gameActive = true;
+                gamePaused = false;
+                
+                // 使用requestAnimationFrame而不是setInterval
+                if (!gameLoopStarted) {
+                    gameLoopStarted = true;
+                    requestAnimationFrame(gameLoop);
+                } else {
+                    requestAnimationFrame(gameLoop);
+                }
+                
+                // 自动射击
+                const shootInterval = setInterval(function() {
+                    if (gameActive && !gamePaused) createBullet();
+                }, playerStats.shotSpeed);
+                
+                // 自动生成敌人 - 根据难度设置生成速度
+                const enemyInterval = setInterval(function() {
+                    if (gameActive && !gamePaused) createEnemy();
+                }, enemySettings.spawnRate);
+                
+                // 计时和得分
+                timeInterval = setInterval(function() {
+                    if (gameActive && !gamePaused) {
+                        gameTime++;
+                        gameScore++;
+                        timeDisplay.textContent = gameTime;
+                        scoreDisplay.textContent = gameScore;
+                    }
+                }, 1000);
+                
+                // 随时间增加难度，但不要太快
+                const difficultyInterval = setInterval(function() {
+                    if (gameActive && !gamePaused && gameTime % 15 === 0) { // 延长到15秒增加一次难度
+                        createEnemy(); // 每次只增加一个敌人
+                    }
+                }, 1000);
+                
+                // 关闭游戏结束界面
+                gameOverlay.classList.add('hidden');
+                
+                // 清除间隔器当游戏结束
+                window.gameTimers = {
+                    shootInterval,
+                    enemyInterval,
+                    timeInterval,
+                    difficultyInterval
+                };
+                
+                console.log("游戏已成功启动");
+                
+                // 确保键盘控制始终有效
+                setupKeyboardControls();
+            }
+            
+            // 重置游戏
+            function resetGame() {
+                // 停止所有计时器
+                if (window.gameTimers) {
+                    clearInterval(window.gameTimers.shootInterval);
+                    clearInterval(window.gameTimers.enemyInterval);
+                    clearInterval(window.gameTimers.timeInterval);
+                    clearInterval(window.gameTimers.difficultyInterval);
+                }
+                clearInterval(gameInterval);
+                
+                // 重置游戏状态
+                gameActive = false;
+                gamePaused = false;
+                gameTime = 0;
+                gameScore = 0;
+                lastUpgradeScore = 0;
+                nextUpgradeScore = 50; // 降低首次升级所需分数到50
+                
+                // 重置玩家属性
+                const settings = difficulties[gameDifficulty];
+                playerStats.maxHealth = settings.playerHealth;
+                playerStats.speed = 3; // 确保每次重置速度恢复到初始值3
+                playerStats.damage = settings.playerDamage;
+                playerStats.shotSpeed = 400;
+                playerStats.level = 1;
+                
+                // 重置敌人设置
+                enemySettings.spawnRate = settings.enemySpawnRate;
+                enemySettings.damage = settings.enemyDamage;
+                enemySettings.health = settings.enemyHealth;
+                enemySettings.count = 0;
+                
+                player.x = canvas.width / 2;
+                player.y = canvas.height / 2;
+                player.health = playerStats.maxHealth;
+                player.speed = playerStats.speed;
+                player.direction = { up: false, down: false, left: false, right: false };
+                
+                // 清空数组
+                enemies.length = 0;
+                bullets.length = 0;
+                healthPickups.length = 0;
+                
+                // 更新显示
+                scoreDisplay.textContent = gameScore;
+                timeDisplay.textContent = gameTime;
+                healthDisplay.textContent = player.health;
+                
+                // 清除画布
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // 绘制初始状态
+                player.update();
+                
+                console.log("游戏已重置");
+                
+                // 隐藏游戏结束界面
+                gameOverlay.classList.add('hidden');
+            }
+            
+            // 结束游戏
+            function endGame() {
+                gameActive = false;
+                
+                console.log("游戏结束");
+                
+                // 清除所有计时器
+                if (window.gameTimers) {
+                    clearInterval(window.gameTimers.shootInterval);
+                    clearInterval(window.gameTimers.enemyInterval);
+                    clearInterval(window.gameTimers.timeInterval);
+                    clearInterval(window.gameTimers.difficultyInterval);
+                }
+                clearInterval(gameInterval);
+                
+                // 显示游戏结束界面
+                finalTimeDisplay.textContent = gameTime;
+                finalScoreDisplay.textContent = gameScore;
+                gameOverlay.classList.remove('hidden');
+                
+                // 显示排行榜并准备保存分数
+                document.getElementById('leaderboardContainer').classList.remove('hidden');
+                document.getElementById('showLeaderboard').classList.add('hidden');
+            }
+            
+            // 按钮事件
+            startBtn.addEventListener('click', startGame);
+            resetBtn.addEventListener('click', resetGame);
+            playAgainBtn.addEventListener('click', startGame);
+            startFromCoverBtn.addEventListener('click', showDifficultyMenu); // 修改为显示难度选择菜单
+            
+            // 绑定升级按钮事件
+            upgrade1.addEventListener('click', upgradeHealth);
+            upgrade2.addEventListener('click', upgradeSpeed);
+            upgrade3.addEventListener('click', upgradeDamage);
+            
+            // 绑定难度选择按钮事件
+            easyMode.addEventListener('click', function() { setDifficulty('easy'); });
+            normalMode.addEventListener('click', function() { setDifficulty('normal'); });
+            hardMode.addEventListener('click', function() { setDifficulty('hard'); });
+            
+            // 游戏初始化显示游戏封面而不是难度选择菜单
+            gameCover.style.display = 'flex'; // 显示游戏封面
+            difficultyMenu.classList.add('hidden'); // 隐藏难度选择菜单
+            
+            // 初始化游戏
+            resetGame();
+            
+            // 设置游戏难度
+            function setDifficulty(difficulty) {
+                gameDifficulty = difficulty;
+                const settings = difficulties[difficulty];
+                
+                // 应用难度设置
+                playerStats.maxHealth = settings.playerHealth;
+                playerStats.damage = settings.playerDamage;
+                enemySettings.spawnRate = settings.enemySpawnRate;
+                enemySettings.damage = settings.enemyDamage;
+                enemySettings.health = settings.enemyHealth;
+                
+                // 更新当前生命值
+                player.health = playerStats.maxHealth;
+                healthDisplay.textContent = Math.floor(player.health);
+                
+                // 隐藏难度选择菜单
+                difficultyMenu.classList.add('hidden');
+                
+                // 直接开始游戏，不再显示游戏封面
+                startGame();
+                
+                console.log("已设置游戏难度: " + difficulty);
+            }
+            
+            // 显示难度选择菜单
+            function showDifficultyMenu() {
+                console.log("显示难度选择菜单");
+                gameCover.style.display = 'none'; // 隐藏游戏封面
+                difficultyMenu.classList.remove('hidden'); // 显示难度选择菜单
+            }
+
+            // 游戏结束函数
+            function gameOver() {
+                gameActive = false;
+                
+                // 显示游戏结束界面
+                gameOverlay.classList.remove('hidden');
+                document.getElementById('finalScore').innerText = gameScore;
+                
+                // 存储最高分
+                const highScore = localStorage.getItem('miniGameHighScore') || 0;
+                if (gameScore > highScore) {
+                    localStorage.setItem('miniGameHighScore', gameScore);
+                }
+                
+                // 清除所有敌人和子弹
+                enemies.length = 0;
+                bullets.length = 0;
+                healthPickups.length = 0;
+            }
+
+            // 返回游戏封面
+            function returnToGameCover() {
+                // 隐藏游戏结束界面和游戏元素
+                gameOverlay.classList.add('hidden');
+                difficultyMenu.classList.add('hidden');
+                
+                // 显示游戏封面
+                gameCover.style.display = 'flex';
+                
+                // 重置游戏状态
+                gameActive = false;
+                gameScore = 0;
+                gameTime = 0;
+                
+                // 清除所有敌人和子弹
+                enemies.length = 0;
+                bullets.length = 0;
+                healthPickups.length = 0;
+            }
+
+            // 事件监听设置
+            startBtn.addEventListener('click', startGame);
+            resetBtn.addEventListener('click', resetGame);
+            playAgainBtn.addEventListener('click', startGame);
+            startFromCoverBtn.addEventListener('click', showDifficultyMenu); // 修改为显示难度选择菜单
+            
+            // 添加返回封面按钮事件
+            const returnToCoverBtn = document.getElementById('returnToCover');
+            if (returnToCoverBtn) {
+                returnToCoverBtn.addEventListener('click', returnToGameCover);
+            }
+        }
     </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加粒子效果到游戏封面
+            createParticles('gameCover');
+            
+            // 语言切换和其他现有代码
+            const translations = {
+                // ... 现有翻译 ...
+            };
+            
+            // ... 现有代码 ...
+        });
+        
+        // 创建粒子背景效果
+        function createParticles(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // 随机大小
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // 随机位置
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // 随机动画延迟
+                particle.style.animationDelay = `${Math.random() * 3}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // 显示分数弹出效果
+        function showScorePopup(x, y, score, color = '#FF5722') {
+            const popup = document.createElement('div');
+            popup.className = 'score-popup';
+            popup.style.left = `${x}px`;
+            popup.style.top = `${y}px`;
+            popup.style.color = color;
+            popup.textContent = `+${score}`;
+            document.getElementById('gameCanvas').parentElement.appendChild(popup);
+            
+            setTimeout(() => {
+                popup.parentElement.removeChild(popup);
+            }, 1500);
+        }
+    </script>
+
+    <!-- HTML5 小游戏部分 - Mini Survivor -->
+    <section class="my-16 relative" id="mini-game">
+        <div class="absolute -top-20 right-4 md:right-8 animate-bounce">
+            <div class="bg-game-accent text-white px-3 py-1.5 rounded-full shadow-lg flex items-center">
+                <i class="fas fa-gamepad mr-2"></i>
+                <span data-translate="mini_game_try_now">Play Now!</span>
+            </div>
+            <div class="w-4 h-4 bg-game-accent transform rotate-45 ml-6 -mt-2"></div>
+        </div>
+        
+        <div class="bg-gradient-to-br from-game-dark to-purple-900 rounded-xl shadow-2xl p-6 overflow-hidden border border-purple-500">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-4 text-center text-white flex justify-center items-center" data-translate="mini_game_title">
+                    <i class="fas fa-fire text-game-accent mr-3 animate-pulse"></i>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-game-accent to-purple-300">Play Mini Survivor</span>
+                    <i class="fas fa-fire text-game-accent ml-3 animate-pulse"></i>
+                </h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center mb-6">
+                    <div class="lg:col-span-2">
+                        <p class="text-gray-200 mb-4 text-center lg:text-left" data-translate="mini_game_desc">Try this mini version of Monster Survivors right in your browser! Use arrow keys or WASD to move, avoid enemies and survive as long as possible.</p>
+                        
+                        <div class="flex flex-wrap justify-center lg:justify-start space-x-0 sm:space-x-4 space-y-3 sm:space-y-0">
+                            <button id="startGame" class="w-full sm:w-auto btn-primary flex items-center justify-center" data-translate="mini_game_start">
+                                <i class="fas fa-play mr-2"></i> Start Game
+                            </button>
+                            <button id="resetGame" class="w-full sm:w-auto btn-secondary flex items-center justify-center" data-translate="mini_game_reset">
+                                <i class="fas fa-redo mr-2"></i> Reset
+                            </button>
+                        </div>
+                        
+                        <div class="flex justify-center lg:justify-start mt-4 gap-4">
+                            <div class="flex items-center px-3 py-1.5 bg-game-dark bg-opacity-50 rounded-lg">
+                                <div class="w-3 h-3 rounded-full bg-game-accent mr-2 animate-pulse"></div>
+                                <span class="text-white" data-translate="mini_game_score">Score:</span> 
+                                <span id="gameScore" class="text-white font-bold ml-1">0</span>
+                            </div>
+                            <div class="flex items-center px-3 py-1.5 bg-game-dark bg-opacity-50 rounded-lg">
+                                <div class="w-3 h-3 rounded-full bg-green-400 mr-2 animate-pulse"></div>
+                                <span class="text-white" data-translate="mini_game_time">Time:</span> 
+                                <span id="gameTime" class="text-white font-bold ml-1">0</span>s
+                            </div>
+                            <div class="flex items-center px-3 py-1.5 bg-game-dark bg-opacity-50 rounded-lg">
+                                <div class="w-3 h-3 rounded-full bg-red-400 mr-2 animate-pulse"></div>
+                                <span class="text-white" data-translate="mini_game_health">Health:</span> 
+                                <span id="gameHealth" class="text-white font-bold ml-1">100</span>%
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hidden lg:flex justify-center items-center">
+                        <div class="relative w-full h-40 bg-game-dark bg-opacity-30 rounded-lg overflow-hidden flex items-center justify-center">
+                            <!-- 游戏预览动画 -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-game-primary animate-ping"></div>
+                                <div class="w-10 h-10 rounded-full bg-game-primary absolute"></div>
+                            </div>
+                            <div class="w-6 h-6 rounded-full bg-red-500 absolute left-1/4 top-1/4 animate-bounce"></div>
+                            <div class="w-6 h-6 rounded-full bg-red-500 absolute right-1/4 bottom-1/4 animate-bounce delay-150"></div>
+                            <div class="w-4 h-4 rounded-full bg-blue-500 absolute left-1/3 bottom-1/3 animate-pulse"></div>
+                            <div class="w-4 h-4 rounded-full bg-green-500 absolute right-1/3 top-1/3 animate-ping"></div>
+                            
+                            <div class="z-10 bg-black bg-opacity-60 px-4 py-2 rounded-lg text-white flex items-center">
+                                <i class="fas fa-play-circle mr-2"></i>
+                                <span data-translate="mini_game_preview">Game Preview</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 游戏画布 -->
+                <div class="flex justify-center">
+                    <div class="relative w-full max-w-3xl">
+                        <div class="absolute -top-1 left-0 right-0 h-4 bg-gradient-to-r from-purple-500 via-game-primary to-game-accent rounded-t-lg"></div>
+                        <div class="border-4 border-game-primary rounded-lg overflow-hidden shadow-[0_0_15px_rgba(98,71,170,0.5)]">
+                            <canvas id="gameCanvas" width="800" height="500" class="bg-gray-100 w-full"></canvas>
+                            
+                            <!-- 难度选择 -->
+                            <div id="difficultyMenu" class="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center text-white p-4 hidden backdrop-filter backdrop-blur-md z-10">
+                                <div class="bg-game-dark p-8 rounded-xl border border-game-primary shadow-xl max-w-3xl w-full">
+                                    <div class="w-20 h-20 mx-auto bg-game-primary rounded-full flex items-center justify-center mb-4 pulse-ring border-purple-400">
+                                        <i class="fas fa-sliders-h text-white text-3xl"></i>
+                                    </div>
+                                    <h3 class="text-4xl font-bold mb-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400" data-translate="mini_game_difficulty_title">选择难度</h3>
+                                    <p class="text-center text-gray-300 mb-6" data-translate="mini_game_select_difficulty">选择适合你的游戏难度:</p>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+                                        <!-- 简单难度 -->
+                                        <div id="easyMode" class="difficulty-card easy">
+                                            <div class="overlay">
+                                                <div class="icon">
+                                                    <i class="fas fa-leaf text-green-400 text-2xl"></i>
+                                                </div>
+                                                <h4 class="text-2xl font-bold mb-1" data-translate="mini_game_difficulty_easy">简单</h4>
+                                                <p class="text-sm opacity-90" data-translate="mini_game_difficulty_easy_desc">更多生命值，敌人更弱</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 普通难度 -->
+                                        <div id="normalMode" class="difficulty-card normal">
+                                            <div class="overlay">
+                                                <div class="icon">
+                                                    <i class="fas fa-balance-scale text-blue-400 text-2xl"></i>
+                                                </div>
+                                                <h4 class="text-2xl font-bold mb-1" data-translate="mini_game_difficulty_normal">普通</h4>
+                                                <p class="text-sm opacity-90" data-translate="mini_game_difficulty_normal_desc">平衡的游戏体验</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 困难难度 -->
+                                        <div id="hardMode" class="difficulty-card hard">
+                                            <div class="overlay">
+                                                <div class="icon">
+                                                    <i class="fas fa-skull text-red-400 text-2xl"></i>
+                                                </div>
+                                                <h4 class="text-2xl font-bold mb-1" data-translate="mini_game_difficulty_hard">困难</h4>
+                                                <p class="text-sm opacity-90" data-translate="mini_game_difficulty_hard_desc">敌人更多，伤害更高</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 升级选择菜单 -->
+                            <div id="upgradeMenu" class="absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center text-white text-center p-4 hidden backdrop-filter backdrop-blur-sm">
+                                <div class="bg-game-dark p-8 rounded-xl border border-game-primary transform transition-all">
+                                    <div class="w-16 h-16 mx-auto bg-game-primary rounded-full flex items-center justify-center mb-4 animate-pulse">
+                                        <i class="fas fa-level-up-alt text-white text-2xl"></i>
+                                    </div>
+                                    <h3 class="text-3xl font-bold mb-3" data-translate="upgrade_title">升级!</h3>
+                                    <p class="text-gray-300 mb-6" data-translate="upgrade_desc">选择一项能力提升:</p>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <div id="upgrade1" class="bg-purple-900 p-4 rounded-lg cursor-pointer hover:bg-purple-800 transition-colors">
+                                            <div class="w-12 h-12 mx-auto bg-purple-700 rounded-full flex items-center justify-center mb-2">
+                                                <i class="fas fa-heart text-red-400"></i>
+                                            </div>
+                                            <h4 class="font-bold text-lg mb-1" data-translate="upgrade_health">生命提升</h4>
+                                            <p class="text-xs text-gray-300" data-translate="upgrade_health_desc">最大生命值+20</p>
+                                        </div>
+                                        
+                                        <div id="upgrade2" class="bg-purple-900 p-4 rounded-lg cursor-pointer hover:bg-purple-800 transition-colors">
+                                            <div class="w-12 h-12 mx-auto bg-purple-700 rounded-full flex items-center justify-center mb-2">
+                                                <i class="fas fa-bolt text-yellow-400"></i>
+                                            </div>
+                                            <h4 class="font-bold text-lg mb-1" data-translate="upgrade_speed">速度提升</h4>
+                                            <p class="text-xs text-gray-300" data-translate="upgrade_speed_desc">移动速度+1</p>
+                                        </div>
+                                        
+                                        <div id="upgrade3" class="bg-purple-900 p-4 rounded-lg cursor-pointer hover:bg-purple-800 transition-colors">
+                                            <div class="w-12 h-12 mx-auto bg-purple-700 rounded-full flex items-center justify-center mb-2">
+                                                <i class="fas fa-crosshairs text-blue-400"></i>
+                                            </div>
+                                            <h4 class="font-bold text-lg mb-1" data-translate="upgrade_damage">攻击提升</h4>
+                                            <p class="text-xs text-gray-300" data-translate="upgrade_damage_desc">子弹伤害+10</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 游戏封面 -->
+                            <div id="gameCover" class="absolute inset-0 bg-gradient-to-br from-game-primary to-purple-900 flex flex-col items-center justify-center text-white text-center p-4">
+                                <div class="w-24 h-24 mx-auto bg-white bg-opacity-10 rounded-full flex items-center justify-center mb-6 backdrop-blur-sm border border-white border-opacity-20">
+                                    <i class="fas fa-gamepad text-white text-4xl"></i>
+                                </div>
+                                <h3 class="text-4xl font-bold mb-2 text-white" data-translate="mini_game_cover_title">Mini Survivor</h3>
+                                <p class="max-w-md mb-6 text-gray-200" data-translate="mini_game_cover_desc">生存、战斗，成为最后的幸存者！使用方向键或WASD移动，自动攻击敌人。</p>
+                                
+                                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                                    <div class="flex items-center px-4 py-2 bg-black bg-opacity-30 backdrop-blur-sm rounded-lg">
+                                        <i class="fas fa-keyboard text-game-accent mr-2"></i>
+                                        <span data-translate="mini_game_cover_controls">WASD / 方向键移动</span>
+                                    </div>
+                                    <div class="flex items-center px-4 py-2 bg-black bg-opacity-30 backdrop-blur-sm rounded-lg">
+                                        <i class="fas fa-crosshairs text-red-400 mr-2"></i>
+                                        <span data-translate="mini_game_cover_auto_attack">自动攻击</span>
+                                    </div>
+                                </div>
+                                
+                                <button id="startFromCover" class="btn-primary px-8 py-3 text-lg flex items-center animate-pulse">
+                                    <i class="fas fa-play-circle mr-2"></i>
+                                    <span data-translate="mini_game_cover_start">开始游戏</span>
+                                </button>
+                            </div>
+                            
+                            <div id="gameOverlay" class="absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center text-white text-center p-4 hidden backdrop-filter backdrop-blur-sm">
+                                <div class="bg-game-dark p-8 rounded-xl border border-game-primary transform transition-all">
+                                    <div class="w-16 h-16 mx-auto bg-red-500 rounded-full flex items-center justify-center mb-4 animate-pulse">
+                                        <i class="fas fa-skull-crossbones text-white text-2xl"></i>
+                                    </div>
+                                    <h3 class="text-3xl font-bold mb-3 text-red-400" data-translate="mini_game_over">Game Over</h3>
+                                    <div class="space-y-2 mb-6">
+                                        <p class="text-xl" data-translate="mini_game_over_desc">You survived <span id="finalTime" class="text-green-400 font-bold">0</span> seconds and scored <span id="finalScore" class="text-game-accent font-bold">0</span> points!</p>
+                                        <p class="text-gray-300">Try again to beat your high score!</p>
+                                    </div>
+                                    <button id="playAgain" class="btn-primary px-8 py-3">
+                                        <i class="fas fa-redo mr-2"></i>
+                                        <span data-translate="mini_game_play_again">Play Again</span>
+                                    </button>
+                                    <button id="returnToCover" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded ml-2">
+                                        <i class="fas fa-home mr-2"></i>
+                                        <span data-translate="mini_game_return_to_cover">返回封面</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm bg-game-dark bg-opacity-40 p-4 rounded-lg text-white">
+                    <div class="flex items-start">
+                        <div class="rounded-full bg-game-primary bg-opacity-20 p-3 mr-3 flex-shrink-0">
+                            <i class="fas fa-keyboard text-game-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-1" data-translate="mini_game_controls">Controls</h4>
+                            <ul class="list-disc list-inside text-gray-300">
+                                <li data-translate="mini_game_control_move">WASD or Arrow Keys to move</li>
+                                <li data-translate="mini_game_control_attack">Attacks are automatic</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="rounded-full bg-game-primary bg-opacity-20 p-3 mr-3 flex-shrink-0">
+                            <i class="fas fa-lightbulb text-game-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-1" data-translate="mini_game_tips">Tips</h4>
+                            <ul class="list-disc list-inside text-gray-300">
+                                <li data-translate="mini_game_tip_avoid">Avoid red enemy monsters</li>
+                                <li data-translate="mini_game_tip_collect">Collect green health pickups</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="rounded-full bg-game-primary bg-opacity-20 p-3 mr-3 flex-shrink-0">
+                            <i class="fas fa-trophy text-game-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-1" data-translate="mini_game_scoring">Scoring</h4>
+                            <ul class="list-disc list-inside text-gray-300">
+                                <li data-translate="mini_game_score_survive">生存每秒+1分</li>
+                                <li data-translate="mini_game_score_enemy">每击败一个敌人+5分</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Leaderboard Section -->
+                <div class="mt-6 bg-game-dark bg-opacity-60 p-4 rounded-lg text-white">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-bold text-lg flex items-center">
+                            <i class="fas fa-crown text-yellow-400 mr-2"></i>
+                            <span data-translate="mini_game_leaderboard">Leaderboard</span>
+                        </h4>
+                        <div>
+                            <button id="showLeaderboard" class="px-3 py-1.5 bg-game-primary rounded-lg text-sm hover:bg-purple-700 transition">
+                                <i class="fas fa-trophy mr-1"></i> 
+                                <span data-translate="mini_game_view_leaderboard">View Leaderboard</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="leaderboardContainer" class="hidden">
+                        <div class="flex mb-3">
+                            <input type="text" id="playerName" placeholder="Enter your name" class="px-3 py-1.5 bg-game-dark border border-purple-500 rounded-lg text-white text-sm mr-2 focus:outline-none focus:ring-2 focus:ring-game-primary" data-translate-attr="placeholder:mini_game_enter_name" />
+                            <button id="saveScore" class="px-3 py-1.5 bg-game-secondary rounded-lg text-sm hover:bg-green-600 transition">
+                                <i class="fas fa-save mr-1"></i>
+                                <span data-translate="mini_game_save_score">Save Score</span>
+                            </button>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-black bg-opacity-50 rounded-lg overflow-hidden">
+                                <thead>
+                                    <tr class="border-b border-purple-800">
+                                        <th class="py-2 px-4 text-left" data-translate="mini_game_rank">Rank</th>
+                                        <th class="py-2 px-4 text-left" data-translate="mini_game_player">Player</th>
+                                        <th class="py-2 px-4 text-right" data-translate="mini_game_score_header">Score</th>
+                                        <th class="py-2 px-4 text-right" data-translate="mini_game_time_survived">Time</th>
+                                        <th class="py-2 px-4 text-right" data-translate="mini_game_date">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="leaderboardBody">
+                                    <tr class="text-center">
+                                        <td colspan="5" class="py-8 text-gray-400" data-translate="mini_game_no_scores">No scores yet. Be the first to play!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="mt-3 text-right">
+                            <button id="clearLeaderboard" class="px-3 py-1.5 bg-red-600 rounded-lg text-sm hover:bg-red-700 transition">
+                                <i class="fas fa-trash-alt mr-1"></i>
+                                <span data-translate="mini_game_clear_leaderboard">Clear Leaderboard</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html> 
