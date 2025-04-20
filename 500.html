@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Error - Monster Survivors Game</title>
+    <meta name="robots" content="noindex, follow">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        game: {
+                            primary: '#6247aa',
+                            secondary: '#419D78',
+                            accent: '#FF5722',
+                            dark: '#2A2D34',
+                            light: '#EDF5FC'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-game-light min-h-screen font-sans flex flex-col justify-center items-center p-4">
+    <div class="text-center max-w-xl">
+        <div class="mb-8 relative">
+            <h1 class="text-9xl font-bold text-game-primary opacity-20">500</h1>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <i class="fas fa-dragon text-5xl text-red-500 animate-pulse"></i>
+            </div>
+        </div>
+        
+        <h2 class="text-3xl font-bold text-game-dark mb-4">Server Error</h2>
+        <p class="text-gray-600 mb-8">Oops! The server encountered a Boss Monster it couldn't defeat. Our team of expert monster hunters is already working on the issue.</p>
+        
+        <div class="grid grid-cols-1 gap-4">
+            <a href="/" class="bg-game-primary hover:bg-purple-700 text-white py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                <i class="fas fa-home mr-2"></i> Return to Home
+            </a>
+            <button id="refresh-btn" class="bg-gray-700 hover:bg-gray-800 text-white py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                <i class="fas fa-sync-alt mr-2"></i> Try Again
+            </button>
+        </div>
+        
+        <div class="mt-8 p-4 bg-white rounded-lg shadow-md">
+            <p class="text-sm text-gray-500 mb-2">If the problem persists, you can:</p>
+            <ul class="text-left text-sm space-y-2">
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-game-secondary mt-1 mr-2"></i>
+                    <span>Clear your browser cache and cookies</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-game-secondary mt-1 mr-2"></i>
+                    <span>Try again in a few minutes</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-game-secondary mt-1 mr-2"></i>
+                    <span>Contact our support at <a href="mailto:support@lutu123.buzz" class="text-game-primary hover:underline">support@lutu123.buzz</a></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // Report 500 errors to analytics
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof gtag === 'function') {
+                gtag('event', 'page_view', {
+                    page_title: '500 - Server Error',
+                    page_location: window.location.href,
+                    page_path: window.location.pathname,
+                    send_to: 'G-FLHGXFNP7C'
+                });
+                
+                gtag('event', '500_error', {
+                    event_category: 'Error',
+                    event_label: document.referrer || 'Direct',
+                    non_interaction: true
+                });
+            }
+            
+            // Refresh button
+            document.getElementById('refresh-btn').addEventListener('click', function() {
+                window.location.reload();
+            });
+            
+            // Auto-refresh after 30 seconds
+            setTimeout(function() {
+                window.location.reload();
+            }, 30000);
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,23 @@
+# Monster Survivors Game Website Robots.txt
+User-agent: *
+Allow: /
+
+# Prevent crawling of admin pages if they are created in future
+Disallow: /admin/
+Disallow: /backend/
+
+# Allow major search bots with throttling to be nicer to the server
+User-agent: Googlebot
+Crawl-delay: 1
+
+User-agent: bingbot
+Crawl-delay: 2
+
+User-agent: Baiduspider
+Crawl-delay: 2
+
+User-agent: Yandex
+Crawl-delay: 2
+
+# Sitemap location
+Sitemap: https://lutu123.buzz/sitemap.xml 

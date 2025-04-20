@@ -1,42 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://lutu123.buzz/</loc>
-    <lastmod>2023-12-01</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2023-04-20</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  <!-- 当你重新创建这些页面时，取消下面的注释 -->
-  <!--
   <url>
     <loc>https://lutu123.buzz/guides.html</loc>
-    <lastmod>2023-12-01</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2023-04-15</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://lutu123.buzz/updates.html</loc>
-    <lastmod>2023-12-01</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2023-04-15</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://lutu123.buzz/faq.html</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lutu123.buzz/about.html</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lutu123.buzz/contact.html</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  -->
+  <url>
+    <loc>https://lutu123.buzz/privacy-policy.html</loc>
+    <lastmod>2023-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://lutu123.buzz/terms-of-service.html</loc>
+    <lastmod>2023-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset> 

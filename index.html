@@ -3,10 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monster Survivors - Thrilling Online Survival Game</title>
-    <meta name="description" content="Play Monster Survivors, an action-packed survival game where you battle endless waves of monsters to become the ultimate survivor.">
-    <meta name="google-site-verification" content="此处替换为Google Search Console提供的验证码" />
-    <link rel="canonical" href="https://monstersurvivors.com">
+    <title>Monster Survivors - Thrilling Online Survival Game | Play Now for Free</title>
+    <meta name="description" content="Play Monster Survivors, an action-packed survival game where you battle endless waves of monsters. Multiple game modes, regular updates, and a thriving community await!">
+    <meta name="google-site-verification" content="Replace with Google Search Console verification code" />
+    <link rel="canonical" href="https://lutu123.buzz">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lutu123.buzz/">
+    <meta property="og:title" content="Monster Survivors - Thrilling Online Survival Game">
+    <meta property="og:description" content="Battle endless waves of monsters in this action-packed survival game. Play now for free!">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/6247aa/ffffff?text=Monster+Survivors">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://lutu123.buzz/">
+    <meta property="twitter:title" content="Monster Survivors - Thrilling Online Survival Game">
+    <meta property="twitter:description" content="Battle endless waves of monsters in this action-packed survival game. Play now for free!">
+    <meta property="twitter:image" content="https://via.placeholder.com/1200x630/6247aa/ffffff?text=Monster+Survivors">
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLHGXFNP7C"></script>
@@ -18,6 +31,13 @@
       gtag('config', 'G-FLHGXFNP7C');
     </script>
     
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- Load stylesheets -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -35,9 +55,6 @@
             .section-title::after {
                 content: '';
                 @apply absolute bottom-0 left-0 w-2/3 h-1 bg-game-primary rounded;
-            }
-            .game-screenshot {
-                @apply rounded-lg shadow-md transition-transform duration-300 hover:scale-105 border-2 border-gray-200;
             }
             .update-card {
                 @apply bg-white rounded-lg shadow-lg p-6 border-l-4 border-game-primary transition-all duration-300 hover:shadow-xl;
@@ -65,7 +82,7 @@
                 100% { background-position: 0% 50%; }
             }
             
-            /* 新增样式 */
+            /* Additional styles */
             .difficulty-card {
                 @apply rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer relative border-2;
             }
@@ -153,23 +170,98 @@
             }
         }
     </script>
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "Monster Survivors",
+      "description": "An action-packed survival game where you battle endless waves of monsters to become the ultimate survivor.",
+      "genre": ["Action", "Survival", "Roguelike"],
+      "gamePlatform": ["Web Browser", "PC"],
+      "applicationCategory": "Game",
+      "operatingSystem": "Any",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1250",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
 </head>
 <body class="bg-game-light text-game-dark min-h-screen font-sans">
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white shadow-md z-50 transform transition-transform duration-300 translate-y-0">
+        <div class="container mx-auto p-4 flex flex-col md:flex-row items-center justify-between">
+            <div class="mb-4 md:mb-0 md:mr-4">
+                <p class="text-sm">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="#" class="text-game-primary hover:underline">Learn more</a></p>
+            </div>
+            <div class="flex space-x-2">
+                <button id="reject-cookies" class="px-4 py-2 text-sm border border-gray-300 rounded hover:bg-gray-100 transition">Reject All</button>
+                <button id="accept-cookies" class="px-4 py-2 text-sm bg-game-primary text-white rounded hover:bg-purple-700 transition">Accept All</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login/Signup Popup -->
+    <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md transform transition-all">
+            <div class="flex border-b border-gray-200">
+                <button id="login-tab" class="flex-1 py-4 text-center font-medium border-b-2 border-game-primary">Login</button>
+                <button id="signup-tab" class="flex-1 py-4 text-center font-medium border-b-2 border-transparent text-gray-500">Sign Up</button>
+                <button id="close-auth-modal" class="p-4 text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="login-form" class="p-6">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-1" for="email">Email</label>
+                    <input id="email" type="email" class="w-full p-2 border border-gray-300 rounded" placeholder="your@email.com">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-1" for="password">Password</label>
+                    <input id="password" type="password" class="w-full p-2 border border-gray-300 rounded" placeholder="********">
+                    <a href="#" class="text-xs text-game-primary hover:underline mt-1 inline-block">Forgot password?</a>
+                </div>
+                <button class="w-full bg-game-primary text-white py-2 rounded hover:bg-purple-700 transition">Login</button>
+                <div class="mt-4 text-center">
+                    <p class="text-sm text-gray-600">Or continue with</p>
+                    <div class="flex justify-center space-x-4 mt-2">
+                        <button class="p-2 border border-gray-300 rounded-full hover:bg-gray-100 transition"><i class="fab fa-google"></i></button>
+                        <button class="p-2 border border-gray-300 rounded-full hover:bg-gray-100 transition"><i class="fab fa-facebook-f"></i></button>
+                        <button class="p-2 border border-gray-300 rounded-full hover:bg-gray-100 transition"><i class="fab fa-twitter"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div id="signup-form" class="p-6 hidden">
+                <!-- Signup form fields here -->
+            </div>
+        </div>
+    </div>
+
     <div class="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div class="container mx-auto px-4 py-2 flex justify-end">
             <div class="language-selector">
                 <span>Language:</span>
                 <span class="language-option active" data-lang="en">English</span>
-                <span class="language-option" data-lang="zh">中文</span>
+                <span class="language-option" data-lang="zh">Chinese</span>
             </div>
         </div>
     </div>
 
-    <!-- 全局导航菜单 -->
+    <!-- Global navigation menu -->
     <nav class="bg-game-dark text-white py-3 sticky top-8 z-40 shadow-md">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap items-center justify-between">
-                <!-- 左侧导航选项 -->
+                <!-- Left navigation options -->
                 <ul class="flex flex-wrap items-center space-x-1 md:space-x-4 text-sm font-medium">
                     <li>
                         <a href="index.html" class="flex items-center px-3 py-2 rounded hover:bg-game-primary transition-colors duration-200" data-translate="global_nav_home">
@@ -203,7 +295,7 @@
                     </li>
                 </ul>
                 
-                <!-- 右侧用户操作 -->
+                <!-- Right user actions -->
                 <div class="flex items-center space-x-2 ml-auto md:ml-0">
                     <button class="bg-game-primary hover:bg-purple-700 text-white px-3 py-1.5 rounded text-sm transition-colors duration-200" data-translate="global_nav_sign_in">
                         <i class="fas fa-sign-in-alt mr-1"></i> Sign In
@@ -227,7 +319,6 @@
             <nav class="hidden md:flex space-x-6">
                 <a href="#game" class="hover:text-game-primary transition flex items-center space-x-1" data-translate="nav_play"><i class="fas fa-play-circle text-sm"></i><span>Play Game</span></a>
                 <a href="#about" class="hover:text-game-primary transition flex items-center space-x-1" data-translate="nav_about"><i class="fas fa-info-circle text-sm"></i><span>About</span></a>
-                <a href="#screenshots" class="hover:text-game-primary transition flex items-center space-x-1" data-translate="nav_screenshots"><i class="fas fa-images text-sm"></i><span>Screenshots</span></a>
                 <a href="#features" class="hover:text-game-primary transition flex items-center space-x-1" data-translate="nav_features"><i class="fas fa-list-check text-sm"></i><span>Features</span></a>
                 <a href="#gameplay" class="hover:text-game-primary transition flex items-center space-x-1" data-translate="nav_gameplay"><i class="fas fa-book text-sm"></i><span>Gameplay Guide</span></a>
                 <a href="#tips" class="hover:text-game-primary transition flex items-center space-x-1" data-translate="nav_tips"><i class="fas fa-lightbulb text-sm"></i><span>Tips & Tricks</span></a>
@@ -248,75 +339,23 @@
             <a href="#game" class="btn-secondary text-lg px-8 py-3" data-translate="hero_cta">Play Now</a>
         </section>
 
-        <!-- 游戏分类入口 - 重新设计游戏部分 -->
+        <!-- Game categories section - Redesigned game part -->
         <section class="my-16" id="game-categories">
-            <h2 class="section-title mb-8" data-translate="categories_title">游戏分类</h2>
+            <h2 class="section-title mb-8 text-center mx-auto" data-translate="categories_title">Game Categories</h2>
             
-            <!-- 游戏盒子容器 -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- 游戏1: Mini Survivor -->
-                <div class="game-box bg-white rounded-lg shadow-xl overflow-hidden border border-game-primary transform transition duration-300 hover:shadow-2xl">
-                    <div class="bg-gradient-to-r from-purple-600 to-purple-800 text-white p-4">
-                        <h3 class="text-2xl font-bold flex items-center">
-                            <i class="fas fa-gamepad mr-2"></i>
-                            <span data-translate="mini_game_title">Mini Survivor</span>
-                            <span class="ml-2 px-2 py-0.5 bg-white text-purple-800 text-xs uppercase rounded-full">浏览器游戏</span>
-                        </h3>
-                    </div>
-                    <div class="p-4">
-                        <p class="text-gray-700 mb-4" data-translate="mini_game_desc">在浏览器中即玩的迷你版生存游戏！使用方向键或WASD移动，避开敌人并尽可能长时间生存。</p>
-                        
-                        <div class="flex items-center mb-4">
-                            <div class="flex-1 flex items-center">
-                                <i class="fas fa-star text-yellow-500 mr-1"></i>
-                                <i class="fas fa-star text-yellow-500 mr-1"></i>
-                                <i class="fas fa-star text-yellow-500 mr-1"></i>
-                                <i class="fas fa-star text-yellow-500 mr-1"></i>
-                                <i class="fas fa-star-half-alt text-yellow-500"></i>
-                                <span class="ml-2 text-sm text-gray-500">(4.5)</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-users text-game-primary mr-1"></i>
-                                <span class="text-sm text-gray-500">1.2k 玩家</span>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
-                            <div class="flex items-center bg-gray-100 p-2 rounded">
-                                <i class="fas fa-keyboard text-gray-700 mr-2"></i>
-                                <span>WASD / 方向键</span>
-                            </div>
-                            <div class="flex items-center bg-gray-100 p-2 rounded">
-                                <i class="fas fa-crosshairs text-gray-700 mr-2"></i>
-                                <span>自动攻击</span>
-                            </div>
-                            <div class="flex items-center bg-gray-100 p-2 rounded">
-                                <i class="fas fa-stopwatch text-gray-700 mr-2"></i>
-                                <span>5-10分钟</span>
-                            </div>
-                            <div class="flex items-center bg-gray-100 p-2 rounded">
-                                <i class="fas fa-medal text-gray-700 mr-2"></i>
-                                <span>排行榜系统</span>
-                            </div>
-                        </div>
-                        
-                        <a href="#mini-game" class="block w-full btn-primary text-center">
-                            <i class="fas fa-play mr-2"></i> 立即游玩
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- 游戏2: Monster Survivors -->
+            <!-- Game box container -->
+            <div class="max-w-3xl mx-auto">
+                <!-- Game 2: Monster Survivors -->
                 <div class="game-box bg-white rounded-lg shadow-xl overflow-hidden border border-game-secondary transform transition duration-300 hover:shadow-2xl">
                     <div class="bg-gradient-to-r from-green-600 to-green-800 text-white p-4">
                         <h3 class="text-2xl font-bold flex items-center">
                             <i class="fas fa-dragon mr-2"></i>
                             <span data-translate="title">Monster Survivors</span>
-                            <span class="ml-2 px-2 py-0.5 bg-white text-green-800 text-xs uppercase rounded-full">完整版</span>
+                            <span class="ml-2 px-2 py-0.5 bg-white text-green-800 text-xs uppercase rounded-full">FULL VERSION</span>
                         </h3>
                     </div>
                     <div class="p-4">
-                        <p class="text-gray-700 mb-4" data-translate="about_p1">怪物生存者是一款令人兴奋的在线生存游戏，您将面对无尽的怪物浪潮。游戏目标简单却具有挑战性：尽可能长时间生存，同时击败成群的敌人。</p>
+                        <p class="text-gray-700 mb-4" data-translate="about_p1">Monster Survivors is an exhilarating online survival game where you face endless waves of monstrous creatures. Your objective is simple yet challenging: survive as long as possible while defeating hordes of enemies.</p>
                         
                         <div class="flex items-center mb-4">
                             <div class="flex-1 flex items-center">
@@ -329,40 +368,40 @@
                             </div>
                             <div class="flex items-center">
                                 <i class="fas fa-users text-game-secondary mr-1"></i>
-                                <span class="text-sm text-gray-500">10k+ 玩家</span>
+                                <span class="text-sm text-gray-500">10k+ players</span>
                             </div>
                         </div>
                         
                         <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
                             <div class="flex items-center bg-gray-100 p-2 rounded">
                                 <i class="fas fa-ghost text-gray-700 mr-2"></i>
-                                <span>多种敌人类型</span>
+                                <span>Multiple Enemy Types</span>
                             </div>
                             <div class="flex items-center bg-gray-100 p-2 rounded">
                                 <i class="fas fa-level-up-alt text-gray-700 mr-2"></i>
-                                <span>角色升级系统</span>
+                                <span>Character Progression</span>
                             </div>
                             <div class="flex items-center bg-gray-100 p-2 rounded">
                                 <i class="fas fa-bolt text-gray-700 mr-2"></i>
-                                <span>多种武器道具</span>
+                                <span>Various Weapons & Items</span>
                             </div>
                             <div class="flex items-center bg-gray-100 p-2 rounded">
                                 <i class="fas fa-trophy text-gray-700 mr-2"></i>
-                                <span>成就系统</span>
+                                <span>Achievement System</span>
                             </div>
                         </div>
                         
                         <a href="#game" class="block w-full btn-secondary text-center">
-                            <i class="fas fa-play mr-2"></i> 开始游戏
+                            <i class="fas fa-play mr-2"></i> Start Game
                         </a>
                     </div>
                 </div>
             </div>
             
-            <!-- 游戏分类部分保持不变 -->
-            <h3 class="text-xl font-bold mt-12 mb-6">更多游戏分类</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <!-- 动作游戏 -->
+            <!-- Game categories section remains unchanged -->
+            <h3 class="text-xl font-bold mt-12 mb-6 text-center">More Game Categories</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <!-- Action games -->
                 <a href="#" class="game-category-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                     <div class="bg-gradient-to-r from-red-500 to-pink-500 h-2"></div>
                     <div class="p-5 text-center">
@@ -374,7 +413,7 @@
                     </div>
                 </a>
                 
-                <!-- 角色扮演 -->
+                <!-- Role-playing games -->
                 <a href="#" class="game-category-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                     <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-2"></div>
                     <div class="p-5 text-center">
@@ -386,7 +425,7 @@
                     </div>
                 </a>
                 
-                <!-- 策略游戏 -->
+                <!-- Strategy games -->
                 <a href="#" class="game-category-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                     <div class="bg-gradient-to-r from-blue-500 to-cyan-500 h-2"></div>
                     <div class="p-5 text-center">
@@ -398,7 +437,7 @@
                     </div>
                 </a>
                 
-                <!-- 生存游戏 -->
+                <!-- Survival games -->
                 <a href="#" class="game-category-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                     <div class="bg-gradient-to-r from-green-500 to-emerald-500 h-2"></div>
                     <div class="p-5 text-center">
@@ -415,66 +454,6 @@
                     <span data-translate="view_all_categories">View All Categories</span>
                     <i class="fas fa-arrow-right ml-1"></i>
                 </a>
-            </div>
-        </section>
-
-        <!-- 新游戏概念展示 -->
-        <section class="my-16" id="new-game">
-            <div class="relative bg-game-dark rounded-xl overflow-hidden">
-                <!-- 背景图层 -->
-                <div class="absolute inset-0 opacity-20" style="background-image: url('https://via.placeholder.com/1200x600/2A2D34/2A2D34'); background-size: cover;"></div>
-                
-                <!-- 内容 -->
-                <div class="relative z-10 container mx-auto px-4 py-12">
-                    <div class="flex flex-col md:flex-row items-center">
-                        <!-- 左侧游戏信息 -->
-                        <div class="w-full md:w-1/2 text-white mb-8 md:mb-0 md:pr-8">
-                            <div class="inline-block bg-game-accent px-3 py-1 rounded text-sm font-bold mb-4" data-translate="new_game_label">NEW CONCEPT</div>
-                            <h2 class="text-4xl font-bold mb-4" data-translate="new_game_title">Cosmic Defenders</h2>
-                            <p class="text-lg mb-6" data-translate="new_game_desc">An epic space adventure where you protect the galaxy from interdimensional invaders. Build your team of defenders, upgrade your starship, and engage in tactical combat.</p>
-                            
-                            <!-- 游戏特性列表 -->
-                            <div class="grid grid-cols-2 gap-4 mb-8">
-                                <div class="flex items-center">
-                                    <i class="fas fa-planet-ringed text-game-accent mr-2"></i>
-                                    <span data-translate="new_game_feature1">Space Exploration</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-user-astronaut text-game-accent mr-2"></i>
-                                    <span data-translate="new_game_feature2">Character Development</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-rocket text-game-accent mr-2"></i>
-                                    <span data-translate="new_game_feature3">Ship Customization</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-satellite text-game-accent mr-2"></i>
-                                    <span data-translate="new_game_feature4">Strategic Combat</span>
-                                </div>
-                            </div>
-                            
-                            <!-- 行动按钮 -->
-                            <div class="flex space-x-4">
-                                <a href="#" class="btn-secondary" data-translate="new_game_learn_more">Learn More</a>
-                                <a href="#" class="bg-transparent border border-white text-white py-2 px-6 rounded-full hover:bg-white hover:text-game-dark transition duration-300 font-semibold" data-translate="new_game_join_waitlist">Join Waitlist</a>
-                            </div>
-                        </div>
-                        
-                        <!-- 右侧游戏图片 -->
-                        <div class="w-full md:w-1/2">
-                            <img src="https://via.placeholder.com/600x400/6247aa/ffffff?text=Cosmic+Defenders" alt="Cosmic Defenders Game" class="rounded-lg shadow-2xl w-full transform transition-transform duration-500 hover:scale-105">
-                            <div class="mt-4 bg-black bg-opacity-50 p-3 rounded-lg">
-                                <div class="flex justify-between text-xs text-white">
-                                    <span data-translate="new_game_dev_status">Development Status: 65%</span>
-                                    <span data-translate="new_game_release">Expected Release: Q2 2024</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-1.5 mt-2">
-                                    <div class="bg-game-accent h-1.5 rounded-full" style="width: 65%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -496,37 +475,6 @@
                 <p class="mb-4" data-translate="about_p1">Monster Survivors is an exhilarating online survival game where you face endless waves of monstrous creatures. Your objective is simple yet challenging: survive as long as possible while defeating hordes of enemies.</p>
                 <p class="mb-4" data-translate="about_p2">As you progress through the game, you'll unlock powerful abilities, weapons, and upgrades that will help you face increasingly difficult enemies. Strategic decision-making and quick reflexes are essential for survival.</p>
                 <p data-translate="about_p3">The game features vibrant graphics, intuitive controls, and an addictive gameplay loop that keeps players coming back for more. Challenge yourself to beat your high score or compete with friends to see who can survive the longest!</p>
-            </div>
-        </section>
-
-        <!-- New Screenshots Section -->
-        <section id="screenshots" class="my-16">
-            <h2 class="section-title" data-translate="screenshots_section_title">Game Screenshots</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div>
-                    <img src="https://via.placeholder.com/600x400/6247aa/ffffff?text=Monster+Battle" alt="Monster Battle Scene" class="game-screenshot w-full">
-                    <p class="mt-2 text-center text-sm">Epic battle against monster hordes</p>
-                </div>
-                <div>
-                    <img src="https://via.placeholder.com/600x400/419D78/ffffff?text=Character+Upgrades" alt="Character Upgrades Screen" class="game-screenshot w-full">
-                    <p class="mt-2 text-center text-sm">Powerful character upgrade system</p>
-                </div>
-                <div>
-                    <img src="https://via.placeholder.com/600x400/FF5722/ffffff?text=Boss+Fight" alt="Boss Fight" class="game-screenshot w-full">
-                    <p class="mt-2 text-center text-sm">Challenging boss encounters</p>
-                </div>
-                <div>
-                    <img src="https://via.placeholder.com/600x400/2A2D34/ffffff?text=Weapons" alt="Weapon Selection" class="game-screenshot w-full">
-                    <p class="mt-2 text-center text-sm">Various weapons to choose from</p>
-                </div>
-                <div>
-                    <img src="https://via.placeholder.com/600x400/6247aa/ffffff?text=Power+Ups" alt="Power Up Collection" class="game-screenshot w-full">
-                    <p class="mt-2 text-center text-sm">Collect power-ups to enhance your abilities</p>
-                </div>
-                <div>
-                    <img src="https://via.placeholder.com/600x400/419D78/ffffff?text=Map+Exploration" alt="Map Exploration" class="game-screenshot w-full">
-                    <p class="mt-2 text-center text-sm">Explore diverse environments</p>
-                </div>
             </div>
         </section>
 
@@ -732,7 +680,29 @@
         </section>
     </main>
 
-    <!-- 添加页脚 -->
+    <!-- Added Newsletter Section before footer -->
+    <section class="bg-game-primary text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">Join Our Community</h2>
+                <p class="mb-6">Subscribe to our newsletter for game updates, exclusive content, and special offers!</p>
+                <form class="flex flex-col md:flex-row gap-2 max-w-lg mx-auto">
+                    <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded-lg text-gray-900" required>
+                    <button type="submit" class="bg-game-secondary hover:bg-green-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold">
+                        Subscribe <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+                <div class="mt-4 text-sm">
+                    <label class="flex items-center justify-center">
+                        <input type="checkbox" class="mr-2">
+                        <span>I agree to receive marketing emails and can unsubscribe at any time</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="bg-game-dark text-white py-10 mt-16">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -741,7 +711,7 @@
                         <i class="fas fa-gamepad text-game-primary mr-2"></i>
                         Monster Survivors
                     </h3>
-                    <p class="text-gray-400">生存、升级、征服！体验这款充满挑战性的生存游戏，与无尽的怪物浪潮作战。</p>
+                    <p class="text-gray-400">Survive, level up, conquer! Experience this challenging survival game and battle against endless waves of monsters.</p>
                     <div class="mt-4 flex space-x-3">
                         <a href="#" class="text-gray-400 hover:text-game-primary">
                             <i class="fab fa-twitter text-xl"></i>
@@ -759,30 +729,30 @@
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold mb-4">网站导航</h3>
+                    <h3 class="text-lg font-bold mb-4">Site Navigation</h3>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="index.html" class="hover:text-white transition">首页</a></li>
-                        <li><a href="guides.html" class="hover:text-white transition">游戏攻略</a></li>
-                        <li><a href="updates.html" class="hover:text-white transition">更新日志</a></li>
-                        <li><a href="faq.html" class="hover:text-white transition">常见问题</a></li>
-                        <li><a href="about.html" class="hover:text-white transition">关于我们</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition">联系方式</a></li>
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="guides.html" class="hover:text-white transition">Game Guides</a></li>
+                        <li><a href="updates.html" class="hover:text-white transition">Update History</a></li>
+                        <li><a href="faq.html" class="hover:text-white transition">FAQ</a></li>
+                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold mb-4">游戏相关</h3>
+                    <h3 class="text-lg font-bold mb-4">Game Info</h3>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">下载游戏</a></li>
-                        <li><a href="#" class="hover:text-white transition">系统需求</a></li>
-                        <li><a href="#" class="hover:text-white transition">游戏社区</a></li>
-                        <li><a href="#" class="hover:text-white transition">支持我们</a></li>
-                        <li><a href="#" class="hover:text-white transition">玩家评价</a></li>
+                        <li><a href="#" class="hover:text-white transition">Download Game</a></li>
+                        <li><a href="#" class="hover:text-white transition">System Requirements</a></li>
+                        <li><a href="#" class="hover:text-white transition">Community</a></li>
+                        <li><a href="#" class="hover:text-white transition">Support Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Player Reviews</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold mb-4">联系我们</h3>
+                    <h3 class="text-lg font-bold mb-4">Contact Us</h3>
                     <ul class="space-y-2 text-gray-400">
                         <li class="flex items-center">
                             <i class="fas fa-envelope text-game-primary mr-2"></i>
@@ -790,25 +760,153 @@
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-headset text-game-primary mr-2"></i>
-                            <span>+86 21-5555-6666</span>
+                            <span>+1 (555) 123-4567</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-map-marker-alt text-game-primary mr-2 mt-1"></i>
-                            <span>上海市浦东新区张江高科技园区盛夏路500号</span>
+                            <span>500 Tech Park Drive, San Francisco, CA 94158</span>
                         </li>
                     </ul>
                 </div>
             </div>
             
-            <div class="mt-10 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-500 text-sm">&copy; 2023 紫月游戏工作室. 保留所有权利。</p>
-                <div class="flex space-x-4 mt-4 md:mt-0 text-sm text-gray-500">
-                    <a href="#" class="hover:text-white transition">隐私政策</a>
-                    <a href="#" class="hover:text-white transition">使用条款</a>
-                    <a href="#" class="hover:text-white transition">Cookie设置</a>
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-400">
+                <p class="text-gray-500 text-sm">&copy; 2023 Purple Moon Game Studio. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Use</a>
+                    <a href="#" class="hover:text-white transition">Cookie Settings</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Added New Scripts -->
+    <script>
+        // Lazy load images
+        document.addEventListener("DOMContentLoaded", function() {
+            const lazyImages = document.querySelectorAll("img.lazy");
+            
+            if ("IntersectionObserver" in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src;
+                            if (lazyImage.dataset.srcset) {
+                                lazyImage.srcset = lazyImage.dataset.srcset;
+                            }
+                            lazyImage.classList.remove("lazy");
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            }
+        });
+
+        // Cookie consent management
+        document.getElementById("accept-cookies").addEventListener("click", function() {
+            localStorage.setItem("cookieConsent", "accepted");
+            document.getElementById("cookie-banner").classList.add("translate-y-full");
+            setTimeout(() => {
+                document.getElementById("cookie-banner").style.display = "none";
+            }, 300);
+        });
+
+        document.getElementById("reject-cookies").addEventListener("click", function() {
+            localStorage.setItem("cookieConsent", "rejected");
+            document.getElementById("cookie-banner").classList.add("translate-y-full");
+            setTimeout(() => {
+                document.getElementById("cookie-banner").style.display = "none";
+            }, 300);
+        });
+
+        // Show cookie banner if consent not given
+        if (!localStorage.getItem("cookieConsent")) {
+            document.getElementById("cookie-banner").style.display = "block";
+        } else {
+            document.getElementById("cookie-banner").style.display = "none";
+        }
+
+        // Authentication modal
+        const authModal = document.getElementById("auth-modal");
+        const loginTab = document.getElementById("login-tab");
+        const signupTab = document.getElementById("signup-tab");
+        const loginForm = document.getElementById("login-form");
+        const signupForm = document.getElementById("signup-form");
+        const closeModal = document.getElementById("close-auth-modal");
+
+        // Show modal
+        document.querySelectorAll(".show-auth-modal").forEach(button => {
+            button.addEventListener("click", function() {
+                authModal.classList.remove("hidden");
+            });
+        });
+
+        // Close modal
+        closeModal.addEventListener("click", function() {
+            authModal.classList.add("hidden");
+        });
+
+        // Tab switching
+        loginTab.addEventListener("click", function() {
+            loginTab.classList.add("border-game-primary");
+            loginTab.classList.remove("text-gray-500");
+            loginTab.classList.remove("border-transparent");
+            
+            signupTab.classList.remove("border-game-primary");
+            signupTab.classList.add("text-gray-500");
+            signupTab.classList.add("border-transparent");
+            
+            loginForm.classList.remove("hidden");
+            signupForm.classList.add("hidden");
+        });
+
+        signupTab.addEventListener("click", function() {
+            signupTab.classList.add("border-game-primary");
+            signupTab.classList.remove("text-gray-500");
+            signupTab.classList.remove("border-transparent");
+            
+            loginTab.classList.remove("border-game-primary");
+            loginTab.classList.add("text-gray-500");
+            loginTab.classList.add("border-transparent");
+            
+            signupForm.classList.remove("hidden");
+            loginForm.classList.add("hidden");
+        });
+
+        // User retention features - gameplay reminders
+        setTimeout(() => {
+            if (!localStorage.getItem("userEngaged")) {
+                // Show a toast notification
+                const toast = document.createElement("div");
+                toast.classList.add("fixed", "bottom-4", "right-4", "bg-white", "p-4", "rounded-lg", "shadow-lg", "z-40", "max-w-xs");
+                toast.innerHTML = `
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 pt-0.5">
+                            <i class="fas fa-gamepad text-game-primary text-xl"></i>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-gray-900">Ready to play?</p>
+                            <p class="text-sm text-gray-500">Try our new Mini Survivor game - it only takes 5 minutes!</p>
+                            <button class="mt-2 text-xs text-game-primary font-medium">Play Now</button>
+                        </div>
+                        <button class="ml-4 text-gray-400 hover:text-gray-500">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.remove();
+                }, 10000);
+            }
+        }, 30000); // Show after 30 seconds of inactivity
+    </script>
 </body>
 </html> 

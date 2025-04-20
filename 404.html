@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Monster Survivors Game</title>
+    <meta name="robots" content="noindex, follow">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        game: {
+                            primary: '#6247aa',
+                            secondary: '#419D78',
+                            accent: '#FF5722',
+                            dark: '#2A2D34',
+                            light: '#EDF5FC'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-game-light min-h-screen font-sans flex flex-col justify-center items-center p-4">
+    <div class="text-center max-w-xl">
+        <div class="mb-8 relative">
+            <h1 class="text-9xl font-bold text-game-primary opacity-20">404</h1>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <i class="fas fa-ghost text-5xl text-game-primary animate-bounce"></i>
+            </div>
+        </div>
+        
+        <h2 class="text-3xl font-bold text-game-dark mb-4">Oh no! Page not found</h2>
+        <p class="text-gray-600 mb-8">The page you're looking for seems to have disappeared like a ghost in the Monster Survivors game.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="/" class="bg-game-primary hover:bg-purple-700 text-white py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                <i class="fas fa-home mr-2"></i> Back to Home
+            </a>
+            <a href="/#game" class="bg-game-secondary hover:bg-green-600 text-white py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                <i class="fas fa-gamepad mr-2"></i> Play Game Instead
+            </a>
+        </div>
+        
+        <div class="mt-12">
+            <p class="text-sm text-gray-500">Lost? Try one of these pages:</p>
+            <div class="flex flex-wrap justify-center gap-4 mt-4">
+                <a href="/guides.html" class="text-game-primary hover:underline"><i class="fas fa-book mr-1"></i> Guides</a>
+                <a href="/updates.html" class="text-game-primary hover:underline"><i class="fas fa-newspaper mr-1"></i> Updates</a>
+                <a href="/faq.html" class="text-game-primary hover:underline"><i class="fas fa-question-circle mr-1"></i> FAQ</a>
+                <a href="/contact.html" class="text-game-primary hover:underline"><i class="fas fa-envelope mr-1"></i> Contact</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Report 404 errors to analytics
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof gtag === 'function') {
+                gtag('event', 'page_view', {
+                    page_title: '404 - Page Not Found',
+                    page_location: window.location.href,
+                    page_path: window.location.pathname,
+                    send_to: 'G-FLHGXFNP7C'
+                });
+                
+                gtag('event', '404_error', {
+                    event_category: 'Error',
+                    event_label: document.referrer || 'Direct',
+                    non_interaction: true
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
