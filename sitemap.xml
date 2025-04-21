@@ -1,51 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Homepage -->
   <url>
     <loc>https://lutu123.buzz/</loc>
-    <lastmod>2023-04-20</lastmod>
+    <lastmod>2023-11-21T10:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+  
+  <!-- Blog Page -->
   <url>
-    <loc>https://lutu123.buzz/guides.html</loc>
-    <lastmod>2023-04-15</lastmod>
+    <loc>https://lutu123.buzz/blog.html</loc>
+    <lastmod>2023-11-21T10:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://lutu123.buzz/updates.html</loc>
-    <lastmod>2023-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lutu123.buzz/faq.html</loc>
-    <lastmod>2023-04-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  
+  <!-- About Page -->
   <url>
     <loc>https://lutu123.buzz/about.html</loc>
-    <lastmod>2023-04-10</lastmod>
+    <lastmod>2023-11-15T10:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  
+  <!-- Contact Page -->
   <url>
     <loc>https://lutu123.buzz/contact.html</loc>
-    <lastmod>2023-04-10</lastmod>
+    <lastmod>2023-11-15T10:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Game Guides Page -->
+  <url>
+    <loc>https://lutu123.buzz/guides.html</loc>
+    <lastmod>2023-11-20T10:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Updates Page -->
+  <url>
+    <loc>https://lutu123.buzz/updates.html</loc>
+    <lastmod>2023-11-20T10:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+  
+  <!-- FAQ Page -->
   <url>
-    <loc>https://lutu123.buzz/privacy-policy.html</loc>
-    <lastmod>2023-04-05</lastmod>
+    <loc>https://lutu123.buzz/faq.html</loc>
+    <lastmod>2023-11-18T10:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
+  
+  <!-- Privacy Policy -->
   <url>
-    <loc>https://lutu123.buzz/terms-of-service.html</loc>
-    <lastmod>2023-04-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://lutu123.buzz/privacy.html</loc>
+    <lastmod>2023-11-01T10:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <!-- Terms of Use -->
+  <url>
+    <loc>https://lutu123.buzz/terms.html</loc>
+    <lastmod>2023-11-01T10:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <!-- Blog Articles -->
+  <url>
+    <loc>https://lutu123.buzz/blog/top-10-monster-survivors-tips-for-beginners.html</loc>
+    <lastmod>2023-11-21T10:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://lutu123.buzz/blog/ultimate-weapon-guide-rankings-and-combos.html</loc>
+    <lastmod>2023-11-15T10:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://lutu123.buzz/blog/character-tier-list-best-picks-for-every-playstyle.html</loc>
+    <lastmod>2023-11-10T10:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://lutu123.buzz/blog/how-to-beat-the-30-minute-boss-advanced-strategy.html</loc>
+    <lastmod>2023-11-05T10:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset> 

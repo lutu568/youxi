@@ -2,22 +2,27 @@
 User-agent: *
 Allow: /
 
-# Prevent crawling of admin pages if they are created in future
+# Allow all bots to access all content
 Disallow: /admin/
-Disallow: /backend/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
 
-# Allow major search bots with throttling to be nicer to the server
+# Sitemap location
+Sitemap: https://lutu123.buzz/sitemap.xml
+
+# Crawl delay for specific bots (optional)
 User-agent: Googlebot
 Crawl-delay: 1
 
 User-agent: bingbot
-Crawl-delay: 2
+Crawl-delay: 1
 
 User-agent: Baiduspider
-Crawl-delay: 2
+Crawl-delay: 1
 
 User-agent: Yandex
-Crawl-delay: 2
+Crawl-delay: 1
 
-# Sitemap location
-Sitemap: https://lutu123.buzz/sitemap.xml 
+# Host directive (optional)
+Host: lutu123.buzz 
